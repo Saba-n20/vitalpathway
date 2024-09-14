@@ -1,0 +1,101 @@
+@use "../../Styles/partials/global" as *;
+@use '../../Styles/partials/variables' as *;
+@use '../../Styles/partials/mixins' as *;
+
+
+.footer{
+    width: 100%;
+    height: 157px;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    box-sizing: border-box; 
+
+    &__logo-des{
+        background-color: $vitalpathway-button;
+        width: 40%;
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 24px;
+        margin-top: 16px;
+        border: 1px solid $white;
+        border-radius: 10px;
+    }
+    &__logo-icon{
+        width: 85px;
+    }
+    &__des{
+        flex-wrap: wrap;
+        padding-left: 16px;
+    }
+    &__information{
+        background-color: $vitalpathway-button;
+        width: 40%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding-left: 24px; 
+        padding-top: 24px; 
+        margin-top: 16px;
+        border: 1px solid $white;
+        border-radius: 10px;
+    }
+    &__details{
+        display: flex;
+        flex-direction: column;
+    }
+    &__list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__contact-media{
+        background-color: $vitalpathway-button;
+        width: 40%;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid $white;
+        border-radius: 10px;
+        padding: 24px;
+        margin-top: 16px;
+
+    }
+    &__icon{
+        width: 16px;
+    }
+    &__contact{
+        display: flex;
+        flex-direction: row;
+    }
+    &__contact-details{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 16px;
+    }
+    &__contact-location{
+        display: flex;
+        flex-direction: row;
+        padding-top: 5px;
+    }
+    &__contact-phone{
+        display: flex;
+        flex-direction: row;
+        padding-top: 10px;
+    }
+    &__contact-email{
+        display: flex;
+        flex-direction: row;
+        padding-top: 10px;
+    }
+    &__media{
+        padding-top: 23px;
+        padding-left: 16px;
+    }
+    &__media-instagram{
+        padding-bottom: 5px;
+    }
+    &__media-facebook{
+        padding-bottom: 5px;
+    }
+    
+}

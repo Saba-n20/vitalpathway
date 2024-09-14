@@ -1,0 +1,61 @@
+@use './variables' as *;
+@use './typography' as *;
+@use './mixins' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Avenir';
+  overflow-x: hidden;
+}
+
+//general style:
+
+h1{
+  font-size: 2.1rem;
+  line-height: 2rem;
+  font-weight: 700;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5625rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.125rem;
+  font-weight: 700;
+}
+
+a {
+  color: $vitalpathway-black;
+  text-decoration: none;
+}
+
+label,
+button{
+  font-size: 0.625rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+
+ul li{
+    list-style-type: none;
+} 
+

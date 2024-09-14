@@ -1,0 +1,85 @@
+@use "../../Styles/partials/global" as *;
+@use '../../Styles/partials/variables' as *;
+@use '../../Styles/partials/mixins' as *;
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  box-sizing: border-box; 
+
+  &__logo {
+    display: flex;
+    flex-direction: row;
+  }
+  &__logo-icon {
+    width: 125px;
+    padding: 16px;
+  }
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 16px;
+    margin: 16px;
+    border-radius: 4px;
+    border: 1px solid $white;
+    height: 65px;
+    color: $vitalpathway-black;
+    background-color: $vitalpathway-button;
+    font-weight: 600;
+    width: 100%;
+  }
+  &__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  &__list {
+    display: flex;
+    flex-direction: row;
+  }
+  &__items {
+    background-color: $vitalpathway-button;
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 4px;
+    margin: 16px;
+    font-size: 15px;
+    &:hover{
+        background-color: $vitalpathway-hoverbtn;
+    }
+    &:focus{
+        background-color: $vitalpathway-hoverbtn;
+    }
+  }
+  &__link{
+    color: $white;
+  }
+  &__appointment-part {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+  }
+  &__appointment-btn{
+    height: 63px;
+    width: 100%;
+    border: 1px solid $vitalpathway-darkblue;
+    border-radius: 4px;
+    background-color: $vitalpathway-darkblue;
+    color: $white;
+    font-size: 18px;
+  }
+}
