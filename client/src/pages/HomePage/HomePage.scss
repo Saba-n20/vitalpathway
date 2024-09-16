@@ -44,7 +44,7 @@
         align-items: center;
     }
     &__img{
-        mix-blend-mode:darken;
+        mix-blend-mode: multiply;
         opacity: 1;
         width:350px;
         height: auto;
@@ -61,7 +61,7 @@
         width: 100%;
     &__icon{
         width: 55px;
-        mix-blend-mode:darken;
+        mix-blend-mode: multiply;
     }
     &__details{
         display: flex;
