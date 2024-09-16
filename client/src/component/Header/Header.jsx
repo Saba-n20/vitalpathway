@@ -1,12 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import logo from "../../assets/logo/logo.svg";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    navigate('/schedule-appointment');
+  };
+
   return (
     <header className="header">
-      <div className="headr__logo">
+      <div className="header__logo">
         <Link to="/">
           <img className="header__logo-icon" src={logo} alt="vitalpathway" />
         </Link>
@@ -25,10 +30,10 @@ const Header = () => {
                 <Link className="header__link" to="/medical-reports">Medical Reports</Link>
               </button>
               <button className="header__items">
-                <Link  className="header__link" to="/doctors">Doctors</Link>
+                <Link className="header__link" to="/doctors">Doctors</Link>
               </button>
               <button className="header__items">
-                <Link className="header__link" to="/services">services</Link>
+                <Link className="header__link" to="/services">Services</Link>
               </button>
               <button className="header__items">
                 <Link className="header__link" to="/sign-in">Sign in/Sign Up</Link>
@@ -37,7 +42,7 @@ const Header = () => {
           </div>
         </div>
         <div className="header__appointment-part">
-          <button className="header__appointment-btn" type="button">
+          <button className="header__appointment-btn" type="button" onClick={handleOnClick}>
             Appointment
           </button>
         </div>

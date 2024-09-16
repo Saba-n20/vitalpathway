@@ -1,8 +1,14 @@
 import React from "react";
 import Header from "../../component/Header/Header";
 import doctors from "../../assets/images/result.png";
+import appointment from "../../assets/icons/appointment.svg";
+import report from "../../assets/icons/report.svg";
+import communicate from "../../assets/icons/communicate.svg";
+import recovered from "../../assets/icons/recovered.svg";
+import happy from "../../assets/icons/happy-face.svg";
 import "../HomePage/HomePage.scss";
 import Footer from "../../component/Footer/Footer";
+import {Link} from "react-router-dom"
 
 const HomePage = () => {
   return (
@@ -31,6 +37,33 @@ const HomePage = () => {
             <img src={doctors} alt="Doctors" className="herosection__img" />
           </div>
         </div>
+      </div>
+      <div className="services">
+        <div className="services__details">
+          <img src={appointment} className="services__icon" alt="Appointment"/>
+          <Link to="/sechedule-appointment">
+          <p className="services__des">Schedulde Appointment</p>
+          </Link>
+        </div>
+        <div className="services__details">
+          <img src={report} className="services__icon" alt="Medical Reports" />
+          <Link to="/medical-report">
+          <p className="services__des-report">Medical Report</p>
+          </Link>
+        </div>
+        <div className="services__details">
+          <img src={communicate} className="services__icon" alt="Communicate with Dr" />
+          <Link to="/communicate">
+          <p className="services__des">Communicate with Dr</p>
+          </Link>
+        </div>
+        <div className="services__details">
+          <img src={recovered} className="services__icon" alt="Recovered Patients" />
+        </div>
+        <div className="services__details">
+          <img src={happy} className="services__icon" alt="Happy face" />
+        </div>
+
       </div>
       <Footer />
     </>

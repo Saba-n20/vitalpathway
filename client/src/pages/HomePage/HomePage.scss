@@ -3,11 +3,7 @@
 @use '../../Styles/partials/mixins' as *;
 
 
-.body{
-    overflow-x: hidden;
-    overflow-y: hidden;
 
-}
 .herosection{
     width: 100%;
     display: flex;
@@ -48,9 +44,36 @@
         align-items: center;
     }
     &__img{
+        mix-blend-mode:darken;
+        opacity: 1;
         width:350px;
         height: auto;
         
+    }
+}
+
+.services{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding-left: 16px;
+        width: 100%;
+    &__icon{
+        width: 55px;
+        mix-blend-mode:darken;
+    }
+    &__details{
+        display: flex;
+        flex-direction: row;
+    }
+    &__des{
+        padding-left: 16px;
+        padding-top: 20px;
+    }
+    &__des-report{
+        padding-left: 16px;
+        padding-top: 40px;
     }
 
 }

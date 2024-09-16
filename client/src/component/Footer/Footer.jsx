@@ -54,7 +54,8 @@ const Footer = () => {
           </div>
           <div className="footer__contact-email">
             <img src={email} alt="Email" className="footer__icon" />
-            <div className="footer__email">: info@vitalpathway.com</div>
+            <div className="footer__email">
+            <a href="mailto@vitalpathway.com">: info@vitalpathway.com</a></div>
           </div>
         </div>
           <div className="footer__media">
