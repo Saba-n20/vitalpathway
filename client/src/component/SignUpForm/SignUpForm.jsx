@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SignUpForm.scss";
 
 const SignUpForm = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -18,6 +17,7 @@ const SignUpForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +36,9 @@ const SignUpForm = () => {
 
     for (const [key, value] of Object.entries(formData)) {
       if (!value.trim()) {
-        newErrors[key] = `${key.replace(/([A-Z])/g, " $1").toUpperCase()} is required`;
+        newErrors[key] = `${key
+          .replace(/([A-Z])/g, " $1")
+          .toUpperCase()} is required`;
       }
     }
 
@@ -48,7 +50,10 @@ const SignUpForm = () => {
       newErrors.phoneNumber = "Phone number must be 10 digits";
     }
 
-    if (formData.postalCode && !/[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d/.test(formData.postalCode)) {
+    if (
+      formData.postalCode &&
+      !/[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d/.test(formData.postalCode)
+    ) {
       newErrors.postalCode = "Invalid postal code format";
     }
 
@@ -73,8 +78,11 @@ const SignUpForm = () => {
       );
       navigate('/medical-report');
     } catch (error) {
-      console.error("There was an error!", error.response?.data || error.message);
-      setErrors({ global: "Error signing up. Please try again." });
+      console.error(
+        "There was an error!",
+        error.response?.data || error.message
+      );
+      alert("Error signing up");
     }
   };
 
@@ -82,51 +90,158 @@ const SignUpForm = () => {
     navigate('/');
   };
 
-  const FormInput = ({ name, type = "text", placeholder, pattern, minLength, required }) => (
-    <div className="form__label-txt">
-      <label className="form__label">{`${name.replace(/([A-Z])/g, ' $1').toUpperCase()}:`}</label>
-      <input
-        className={`form__txt ${name === 'address' ? 'form__txt-address' : ''}`}
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={formData[name]}
-        onChange={handleChange}
-        pattern={pattern}
-        minLength={minLength}
-        required={required}
-      />
-      {errors[name] && <span className="error">{errors[name]}</span>}
-    </div>
-  );
-
   return (
     <div className="form">
       <form onSubmit={handleSubmit} className="form__container">
         <div className="form__part-one">
           <div className="form__name">
-            <FormInput name="firstName" placeholder="First Name" required />
-            <FormInput name="lastName" placeholder="Last Name" required />
+            <div className="form__label-txt">
+              <label className="form__label">First Name:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              {errors.firstName && (
+                <span className="error">{errors.firstName}</span>
+              )}
+            </div>
+
+            <div className="form__label-txt">
+              <label className="form__label">Last Name:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+              {errors.lastName && (
+                <span className="error">{errors.lastName}</span>
+              )}
+            </div>
           </div>
+
           <div className="form__dob-email">
-            <FormInput name="dateOfBirth" type="date" required />
-            <FormInput name="email" type="email" placeholder="Email" required />
+            <div className="form__label-txt">
+              <label className="form__label">Date of Birth:</label>
+              <input
+                className="form__txt"
+                type="date"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleChange}
+                required
+              />
+              {errors.dateOfBirth && (
+                <span className="error">{errors.dateOfBirth}</span>
+              )}
+            </div>
+            <div className="form__label-txt">
+              <label className="form__label">Email:</label>
+              <input
+                className="form__txt"
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              {errors.email && <span className="error">{errors.email}</span>}
+            </div>
           </div>
         </div>
         <div className="form__address">
-          <FormInput name="address" placeholder="Address" type="text" />
+          <div className="form__label-txt-address">
+            <label className="form__label">Address:</label>
+            <input
+              className="form__txt-address"
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+            {errors.address && <span className="error">{errors.address}</span>}
+          </div>
         </div>
         <div className="form__part-two">
           <div className="form__phone-city">
-            <FormInput name="phoneNumber" type="tel" placeholder="4375572526" pattern="\d{10}" />
-            <FormInput name="city" placeholder="Toronto" />
+            <div className="form__label-txt">
+              <label className="form__label">Phone Number:</label>
+              <input
+                className="form__txt"
+                type="tel"
+                name="phoneNumber"
+                placeholder="4375572526"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required
+                pattern="\d{10}"
+              />
+              {errors.phoneNumber && (
+                <span className="error">{errors.phoneNumber}</span>
+              )}
+            </div>
+
+            <div className="form__label-txt">
+              <label className="form__label">City:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="city"
+                placeholder="Toronto"
+                value={formData.city}
+                onChange={handleChange}
+                required
+              />
+              {errors.city && <span className="error">{errors.city}</span>}
+            </div>
           </div>
           <div className="form__post-pass">
-            <FormInput name="postalCode" placeholder="M5P 0E2" pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d" />
-            <FormInput name="password" type="password" placeholder="More than 8 characters" minLength="8" />
+            <div className="form__label-txt">
+              <label className="form__label">Postal Code:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="postalCode"
+                placeholder="M5P 0E2"
+                value={formData.postalCode}
+                onChange={handleChange}
+                required
+                pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
+              />
+              {errors.postalCode && (
+                <span className="error">{errors.postalCode}</span>
+              )}
+            </div>
+
+            <div className="form__label-txt">
+              <label className="form__label">Password:</label>
+              <input
+                className="form__txt"
+                type="password"
+                name="password"
+                placeholder="More than 8 characters"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                minLength="8"
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
           </div>
         </div>
-        {errors.global && <div className="error">{errors.global}</div>}
         <div className="form__btn">
           <button type="submit" className="form__btn-signup">
             Create An Account
