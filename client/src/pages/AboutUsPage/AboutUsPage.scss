@@ -1,0 +1,42 @@
+@use "../../Styles/partials/global" as *;
+@use '../../Styles/partials/variables' as *;
+@use '../../Styles/partials/mixins' as *;
+
+.herosection{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 150px;
+    &__details{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__info-about{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+
+    }
+    &__why-info{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+        padding-top: 19px;
+
+    }
+}
+.services{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    &__details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 25px;
+    }
+}
