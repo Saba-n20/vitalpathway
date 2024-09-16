@@ -8,9 +8,13 @@ import recovered from "../../assets/icons/recovered.svg";
 import happy from "../../assets/icons/happy-face.svg";
 import "../HomePage/HomePage.scss";
 import Footer from "../../component/Footer/Footer";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    navigate('/sign-up');
+  };
   return (
     <>
       <Header />
@@ -31,6 +35,11 @@ const HomePage = () => {
                 all in one secure place. We put your health first and ensure you
                 have the tools for better care and peace of mind.
               </p>
+              <div className="herosection__signin-part">
+                 <button className="herosection__sigin-btn" type="button" onClick={handleOnClick}>
+                  Create An Account
+                  </button>
+              </div>
             </div>
           </div>
           <div className="herosection__imagepart">

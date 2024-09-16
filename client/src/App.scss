@@ -5,6 +5,7 @@ body {
   background-image: url("../src/assets/images/background.png");
   background-size: cover;
   background-position: center;
+  overflow-x: hidden;
 
   &::before {
       content: '';
