@@ -1,0 +1,127 @@
+@use "../../Styles/partials/global" as *;
+@use '../../Styles/partials/variables' as *;
+@use '../../Styles/partials/mixins' as *;
+
+.form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;   
+    }
+    &__part-one{
+        display: flex;
+        flex-direction: row;
+        margin: 1.25rem;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    &__part-two{
+        display: flex;
+        flex-direction: row;
+        margin: 1.25rem;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    &__label-txt{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: $silver;
+    }
+    &__label-txt-address{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        color: $silver;
+    }
+    &__label{
+        font-size: 0.875rem;
+        padding: 0.5rem 0rem;
+    }
+    &__txt{
+        width: 15.625rem;
+        height: 2.1875rem;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid $silver;
+        padding-left: 0.625rem;
+        margin-left: 0.625rem;
+        &::placeholder{
+            color: $vitalpathway-black;
+        }
+        &:focus{
+            border: 0.0625rem solid $vitalpathway-button;  
+        }
+    }
+    &__txt-address{
+        height: 2.1875rem;
+        width: 100%;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid $silver;
+        padding-left: 0.625rem;
+        margin-left: 0.625rem;
+        &::placeholder{
+            color: $vitalpathway-black;
+        }
+    }
+    &__address{
+        padding: 1.5625rem;
+        width: 65%;
+        
+    }
+    &__name{
+        display: flex;
+        flex-direction: column;
+    }
+    &__dob-email{
+        display: flex;
+        flex-direction: column;
+    }
+    &__phone-city{
+        display: flex;
+        flex-direction: column;
+    }
+    &__post-pass{
+        display: flex;
+        flex-direction: column;
+    }
+    &__btn{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 35%;
+        gap: 3.4375rem;
+    }
+    &__btn-signup{
+        width: 50%;
+        height: 2.8125rem;
+        margin-top: 1rem;
+        width: 100%;
+        border: 0.0625rem solid $vitalpathway-darkblue;
+        border-radius: 0.625rem;
+        background-color: $vitalpathway-darkblue;
+        color: $white;
+        font-size: 0.9375rem;
+        &:hover{
+            background-color: $vitalpathway-button;
+        }
+    }
+    &__btn-cancel{
+        width: 50%;
+        height: 2.8125rem;
+        margin-top: 1rem;
+        width: 100%;
+        border: 0.0625rem solid $silver;
+        border-radius: 0.625rem;
+        background-color: $white;
+        color: $silver;
+        font-size: 0.9375rem;
+        &:hover{
+            background-color: $vitalpathway-lightblue;
+        }
+    }
+}

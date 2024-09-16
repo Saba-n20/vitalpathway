@@ -50,6 +50,19 @@
         height: auto;
         
     }
+    &__sigin-btn{
+    height: 45px;
+    margin-top: 16px;
+    width: 50%;
+    border: 0.0625rem solid $vitalpathway-darkblue;
+    border-radius: 0.25rem;
+    background-color: $vitalpathway-darkblue;
+    color: $white;
+    font-size: 1.125rem;
+    &:hover{
+        background-color: $vitalpathway-button;
+    }
+    }
 }
 
 .services{
@@ -66,6 +79,8 @@
     &__details{
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
     }
     &__des{
         padding-left: 16px;

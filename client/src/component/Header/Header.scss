@@ -82,5 +82,8 @@
     background-color: $vitalpathway-darkblue;
     color: $white;
     font-size: 1.125rem;
+    &:hover{
+      background-color: $vitalpathway-button;
+  }
   }
 }
