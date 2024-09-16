@@ -36,7 +36,7 @@ const HomePage = () => {
                 have the tools for better care and peace of mind.
               </p>
               <div className="herosection__signin-part">
-                 <button className="herosection__sigin-btn" type="button" onClick={handleOnClick}>
+                 <button className="herosection__signup-btn" type="button" onClick={handleOnClick}>
                   Create An Account
                   </button>
               </div>
@@ -66,11 +66,13 @@ const HomePage = () => {
           <p className="services__des">Communicate with Dr</p>
           </Link>
         </div>
-        <div className="services__details">
+        <div className="services__satisfaction">
+        <div className="services__satisfaction-recovered">
           <img src={recovered} className="services__icon" alt="Recovered Patients" />
         </div>
-        <div className="services__details">
+        <div className="services__satisfaction-happy">
           <img src={happy} className="services__icon" alt="Happy face" />
+        </div>
         </div>
 
       </div>
