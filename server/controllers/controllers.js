@@ -110,4 +110,6 @@ export const SignUp = (req, res) => {
   });
 };
 
+
+
 export { readDataFromFile, writeDataToFile };
