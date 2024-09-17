@@ -15,7 +15,13 @@ router.get('/signup', (_req, res) => {
 // Handle sign-up form submission
 router.post('/signup', controller.SignUp);
 
+// Serve the sign-in form
+router.get('/signin', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/signin.html'));
+});
 
+// Handle sign-in form submission
+router.post('/signin', controller.SignIn);
 
 // Route to get all patients
 router.get('/patients', controller.getAllPatients);

@@ -110,6 +110,34 @@ export const SignUp = (req, res) => {
   });
 };
 
+// Sign in user
+export const SignIn = (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+      return res.status(400).send('Email and password are required');
+  }
+
+  readDataFromFile((err, data) => {
+      if (err) {
+          return res.status(500).send('Internal Server Error');
+      }
+
+      const user = data.doctors.flatMap(doctor => doctor.patients)
+                              .find(patient => patient.email === email);
+
+      if (!user) {
+          return res.status(404).send('User not found');
+      }
+
+      if (user.password !== password) {
+          return res.status(401).send('Incorrect password');
+      }
+
+      // Successfully authenticated
+      res.json({ success: true });
+  });
+};
 
 
 export { readDataFromFile, writeDataToFile };
