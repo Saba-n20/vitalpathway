@@ -6,9 +6,8 @@
 
 .herosection{
     width: 100%;
-    display: flex;
-    flex-direction: column;
     padding: 9.375rem;
+    display: flex;
 
     &__details{
         display: flex;
@@ -46,7 +45,7 @@
     &__img{
         mix-blend-mode: multiply;
         opacity: 1;
-        width:28.125rem;
+        width:550px;
         height: auto;
         
     }
