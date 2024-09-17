@@ -132,7 +132,7 @@ const SignUpForm = () => {
             <div className="form__label-txt">
               <label className="form__label">Date of Birth:</label>
               <input
-                className="form__txt"
+                className="form__txt-dob"
                 type="date"
                 name="dateOfBirth"
                 value={formData.dateOfBirth}

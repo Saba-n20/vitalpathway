@@ -4,20 +4,20 @@ import Footer from "../../component/Footer/Footer";
 import recovered from "../../assets/icons/recovered.svg";
 import happy from "../../assets/icons/happy-face.svg";
 import aboutus from "../../assets/images/about-us.png";
+import why from "../../assets/images/WHY.jpg";
 import "../AboutUsPage/AboutUsPage.scss";
-import { Link } from "react-router-dom";
+
 
 const AboutUsPage = () => {
   return (
     <>
       <Header />
-      <div className="herosection">
-        <div className="herosection__details">
-          <div className="herosection__info-about">
-            <div className="herosection__title">
-              <h1>About Us</h1>
-            </div>
-              <p>
+      <div className="heropart">
+        <div className="heropart__details">
+          <div className="heropart__info-about-img">
+            <div className="heropart__info-about">
+              <h1 className="heropart__title">About Us:</h1>
+              <p className="heropart__txt">
                 At VitalPathway, we are committed to transforming your
                 healthcare journey into a seamless and efficient experience. Our
                 comprehensive platform empowers you to manage appointments,
@@ -34,9 +34,18 @@ const AboutUsPage = () => {
                 delivering exceptional, personalized care every step of the way.
               </p>
             </div>
-              <div className="herosection__why-info">
-              <h1 className="herosection__second-title">Why choose us</h1>
-              <p>
+            
+              <div className="heropart__image">
+                <img src={aboutus} alt="Doctors" className="heropart__img" />
+              </div>
+            </div>
+            <div className="heropart__why-info-img">
+              <div className="heropart__image">
+                <img src={why} alt="Doctors" className="heropart__img" />
+              </div>
+              <div className="heropart__why-info">
+              <h1 className="heropart__title">Why choose us:</h1>
+              <p className="heropart__txt">
                 At VitalPathway, we stand out as your trusted partner in
                 healthcare because of our unwavering commitment to convenience,
                 security, and personalized care. Our all-in-one platform
@@ -54,22 +63,23 @@ const AboutUsPage = () => {
                 streamlined, supportive, and effective approach to managing your
                 health.
               </p>
-              </div>
+            </div>
           </div>
         </div>
-      <div className="services">
-        <div className="services__details">
-          <div className="services__detail">
+      </div>
+      <div className="servicessection">
+        <div className="servicessection__details">
+          <div className="servicessection__details-recovered">
             <img
               src={recovered}
-              className="services__icon"
+              className="servicessection__icon"
               alt="Recovered Patients"
             />
-            <p>Recovered Patients</p>
+            <p className="servicessection__des">Recovered Patients</p>
           </div>
-          <div className="services__detail">
-            <img src={happy} className="services__icon" alt="Happy Face" />
-            <p>Happy Faces</p>
+          <div className="servicessection__details-happy">
+            <img src={happy} className="servicessection__icon" alt="Happy Face" />
+            <p className="servicessection__des">Happy Faces</p>
           </div>
         </div>
       </div>
