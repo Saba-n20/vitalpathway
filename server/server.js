@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import router from './route/route.js';
 
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
 // Use routes
 app.use('/', router);
+
 
 // Start the server
 app.listen(PORT, () => {

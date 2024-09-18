@@ -42,23 +42,34 @@ export const getAllPatients = (req, res) => {
   });
 };
 
-// Get patient by ID
+// Get patients by ID
 export const getPatientById = (req, res) => {
   const { id } = req.params;
+  console.log("Requested Patient ID:", id); // Log the requested ID
+
   readDataFromFile((err, data) => {
     if (err) {
-      res.status(500).send('Internal Server Error');
-      return;
+      console.error("Error reading data file:", err);
+      return res.status(500).send('Internal Server Error');
     }
+
+    // Log the data structure to verify it
+    console.log("Data read from file:", JSON.stringify(data, null, 2));
+
     const patient = data.doctors.flatMap(doctor => doctor.patients)
                                 .find(patient => patient.patient_id === id);
+    
     if (patient) {
+      console.log("Patient found:", patient);
       res.json(patient);
     } else {
+      console.warn("Patient not found for ID:", id);
       res.status(404).send('Patient not found');
     }
   });
 };
+
+
 
 // Sign up new user
 export const SignUp = (req, res) => {
@@ -134,8 +145,25 @@ export const SignIn = (req, res) => {
           return res.status(401).send('Incorrect password');
       }
 
-      // Successfully authenticated
-      res.json({ success: true });
+      // Successfully authenticated, return patient ID
+      res.json({ success: true, patient_id: user.patient_id });
+  });
+};
+
+
+
+// Get all doctors
+export const getAllDoctors = (req, res) => {
+  readDataFromFile((err, data) => {
+    if (err) {
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    const doctors = data.doctors.map(doctor => ({
+      id: doctor.doctor_id,
+      name: `${doctor.first_name} ${doctor.last_name}`
+    }));
+    res.json(doctors);
   });
 };
 
