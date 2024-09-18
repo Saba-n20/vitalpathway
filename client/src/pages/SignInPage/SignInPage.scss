@@ -30,6 +30,7 @@
     }
     &__title{
         font-size: 2.1875rem;
+        padding-bottom: 1rem;
     }
 
     &__info{
@@ -39,7 +40,7 @@
         flex-direction: column;
         align-items: center;
         font-weight: 600;
-        text-align: center;
+        text-align: justify;
     }
     &__image-form{
         display: flex;
