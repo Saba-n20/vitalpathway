@@ -1,0 +1,95 @@
+@use "../../Styles/partials/global" as *;
+@use "../../Styles/partials/variables" as *;
+@use "../../Styles/partials/mixins" as *;
+
+.appointment{
+    display: flex;
+    flex-direction: row;
+    margin: 16px;
+
+    &__form{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    }
+
+    &__form-group{
+        display: flex;
+        flex-direction: column;
+
+    }
+    &__form-label{
+        width: 100%;
+        color: $silver;
+        font-size: 15px;
+        padding: 5px;
+    }
+    &__input{
+        width: 21.875rem;
+        height: 40px;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid $silver;
+        padding-left: 0.625rem;
+        margin-left: 0.625rem;
+        padding-right: 0.625rem;
+        &::placeholder {
+            color: $vitalpathway-black;
+        }
+        &:focus {
+            border: 0.0625rem solid $vitalpathway-button;
+        }
+    }
+    &__buttons{
+        display: flex;
+        flex-direction: row;
+        gap: 1.5625rem;
+    }
+    &__selection{
+        width: 21.875rem;
+        height: 40px;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid $silver;
+        padding-left: 0.625rem;
+        margin-left: 0.625rem;
+        padding-right: 0.625rem;
+        &::placeholder {
+            color: $vitalpathway-black;
+        }
+        &:focus {
+            border: 0.0625rem solid $vitalpathway-button;
+        }
+    }
+
+    &__btn-cancel {
+        width: 50%;
+        height: 45px;
+        margin-top: 1rem;
+        width: 100%;
+        border: 0.0625rem solid $silver;
+        border-radius: 0.625rem;
+        background-color: $white;
+        color: $silver;
+        font-size: 0.9375rem;
+        &:hover {
+          background-color: $vitalpathway-lightblue;
+        }
+      }
+
+      &__btn-confirm{
+        height: 2.8125rem;
+        margin-top: 1rem;
+        width: 100%;
+        border: 0.0625rem solid $vitalpathway-darkblue;
+        border-radius: 0.625rem;
+        background-color: $vitalpathway-darkblue;
+        color: $white;
+        font-size: 0.9375rem;
+        &:hover {
+          background-color: $vitalpathway-button;
+        }
+      }
+      &__msg{
+        padding: 36px;
+        flex-wrap: wrap;
+      }
+}

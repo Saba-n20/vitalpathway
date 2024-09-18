@@ -19,7 +19,7 @@ const SignInForm = () => {
     }
 
     if (password.length < 8) {
-      newErrors.password = "Password must be at least 6 characters long.";
+      newErrors.password = "Password must be at least 8 characters long.";
       valid = false;
     }
 
@@ -41,45 +41,48 @@ const SignInForm = () => {
         if (response.ok) {
           const data = await response.json();
           if (data.success) {
-            // Handle successful sign-in (redirect to medical report page)
-            navigate("/medical-reports");
+            // Fetch the patient's data using the email
+            const patientResponse = await fetch(`http://localhost:8080/patients/${data.patient_id}`);
+            if (patientResponse.ok) {
+              const patientData = await patientResponse.json();
+
+              // Store all patient data in localStorage
+              localStorage.setItem("patientData", JSON.stringify(patientData));
+
+              // Redirect to medical reports page
+              navigate("/medical-reports");
+            } else {
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                server: "Failed to fetch patient data. Please try again.",
+              }));
+            }
           } else {
-            // Handle sign-in errors returned by the server
             setErrors((prevErrors) => ({
               ...prevErrors,
-              server:
-                data.message ||
-                "Sign-in failed. Please check your credentials and try again.",
+              server: data.message || "Sign-in failed. Please check your credentials and try again.",
             }));
           }
         } else {
-          // Handle HTTP errors
-          console.error("Sign-in failed: ", response.statusText);
           setErrors((prevErrors) => ({
             ...prevErrors,
-            server:
-              "An error occurred while signing in. Please try again later.",
+            server: "An error occurred while signing in. Please try again later.",
           }));
         }
       } catch (error) {
-        // Handle network errors
-        console.error("Network error: ", error);
         setErrors((prevErrors) => ({
           ...prevErrors,
-          server:
-            "A network error occurred. Please check your connection and try again.",
+          server: "A network error occurred. Please check your connection and try again.",
         }));
       }
     }
   };
 
   const handleCancel = () => {
-    // Redirect to home page
     navigate("/");
   };
 
   const handleSignUp = () => {
-    // Redirect to sign up page
     navigate("/sign-up");
   };
 
@@ -116,7 +119,7 @@ const SignInForm = () => {
           />
           <span className="error">{errors.password}</span>
         </div>
-        <div className="form__group-remembr">
+        <div className="form__group-remember">
           <input
             className="form__box-remember"
             type="checkbox"
@@ -145,8 +148,8 @@ const SignInForm = () => {
           >
             Cancel
           </button>
-          </div>
-          <div className="form__signup-part">
+        </div>
+        <div className="form__signup-part">
           <button
             className="form__button-signup"
             type="button"
@@ -155,7 +158,7 @@ const SignInForm = () => {
           >
             Sign Up
           </button>
-          </div>
+        </div>
         <div className="error">{errors.server}</div>
       </form>
     </div>

@@ -8,13 +8,15 @@ import recovered from "../../assets/icons/recovered.svg";
 import happy from "../../assets/icons/happy-face.svg";
 import "../HomePage/HomePage.scss";
 import Footer from "../../component/Footer/Footer";
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
+
   const handleOnClick = () => {
     navigate('/sign-up');
   };
+
   return (
     <>
       <Header />
@@ -22,10 +24,10 @@ const HomePage = () => {
         <div className="herosection__details">
           <div className="herosection__details-partone">
             <div className="herosection__title">
-              <h1>Welcom to the VitalPathway</h1>
+              <h1>Welcome to the VitalPathway</h1>
             </div>
             <div className="herosection__second-title">
-              <h3>Your health journey, simplified. </h3>
+              <h3>Your health journey, simplified.</h3>
             </div>
             <div className="herosection__info">
               <p>
@@ -36,9 +38,9 @@ const HomePage = () => {
                 have the tools for better care and peace of mind.
               </p>
               <div className="herosection__signin-part">
-                 <button className="herosection__signup-btn" type="button" onClick={handleOnClick}>
+                <button className="herosection__signup-btn" type="button" onClick={handleOnClick}>
                   Create An Account
-                  </button>
+                </button>
               </div>
             </div>
           </div>
@@ -49,32 +51,31 @@ const HomePage = () => {
       </div>
       <div className="services">
         <div className="services__details">
-          <img src={appointment} className="services__icon" alt="Appointment"/>
-          <Link to="/sechedule-appointment">
-          <p className="services__des">Schedulde Appointment</p>
+          <img src={appointment} className="services__icon" alt="Appointment" />
+          <Link to="/schedule-appointment">
+            <p className="services__des">Schedule Appointment</p>
           </Link>
         </div>
         <div className="services__details">
           <img src={report} className="services__icon" alt="Medical Reports" />
           <Link to="/medical-report">
-          <p className="services__des-report">Medical Report</p>
+            <p className="services__des-report">Medical Report</p>
           </Link>
         </div>
         <div className="services__details">
           <img src={communicate} className="services__icon" alt="Communicate with Dr" />
           <Link to="/communicate">
-          <p className="services__des">Communicate with Dr</p>
+            <p className="services__des">Communicate with Dr</p>
           </Link>
         </div>
         <div className="services__satisfaction">
-        <div className="services__satisfaction-recovered">
-          <img src={recovered} className="services__icon" alt="Recovered Patients" />
+          <div className="services__satisfaction-recovered">
+            <img src={recovered} className="services__icon" alt="Recovered Patients" />
+          </div>
+          <div className="services__satisfaction-happy">
+            <img src={happy} className="services__icon" alt="Happy face" />
+          </div>
         </div>
-        <div className="services__satisfaction-happy">
-          <img src={happy} className="services__icon" alt="Happy face" />
-        </div>
-        </div>
-
       </div>
       <Footer />
     </>
