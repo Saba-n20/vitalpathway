@@ -24,6 +24,7 @@ router.get('/signin', (_req, res) => {
 // Route to schedule an appointment
 router.post('/schedule', appointment.scheduleAppointment);
 
+
 // Endpoint to get available slots
 router.get('/available-slots', appointment.getAvailableSlots);
 

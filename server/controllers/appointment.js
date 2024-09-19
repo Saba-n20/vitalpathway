@@ -65,53 +65,66 @@ export const getAvailableSlots = async (req, res) => {
     const availableSlots = findAvailableSlots(data.doctors, date);
     res.json({ availableSlots });
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error getting available slots:', error);
+    res.status(500).send('Internal server error');
   }
 };
 
-// Handle scheduling an appointment
 export const scheduleAppointment = async (req, res) => {
   const { date, time, service, doctorName, patient } = req.body;
 
-  if (!date || !time || !service || !doctorName || !patient) {
-    return res.status(400).send('All fields are required');
-  }
+  // Validate input fields
+  if (!date) return res.status(400).send('Date is required');
+  if (!time) return res.status(400).send('Time is required');
+  if (!service) return res.status(400).send('Service is required');
+  if (!doctorName) return res.status(400).send('Doctor name is required');
+  if (!patient) return res.status(400).send('Patient name is required');
+
+  console.log('Received appointment request:', { date, time, service, doctorName, patient });
 
   try {
     const data = await readDataFromFile();
     
+    // Create new appointment
     const newAppointment = {
-      id: uuidv4(),
-      date,
-      time,
-      service,
-      doctor: doctorName,
+      appointmentId: uuidv4(),
+      appointmentdate: date,
+      appointmenttime: time,
+      appointmentservice: service,
+      appointmentdoctor: doctorName,
       patient
     };
 
+    // Find doctor
     const doctor = data.doctors.find(doc => `${doc.first_name} ${doc.last_name}` === doctorName);
     if (!doctor) {
       return res.status(404).send('Doctor not found');
     }
 
+    // Find patient
     const patientData = doctor.patients.find(p => p.name === patient);
     if (!patientData) {
       return res.status(404).send('Patient not found');
     }
 
+    // Check for existing appointment
     const existingAppointment = patientData.medical_reports.find(appointment => 
-      appointment.date === date && appointment.time === time
+      appointment.appointmentdate === date && appointment.appointmenttime === time
     );
 
     if (existingAppointment) {
       return res.status(409).send('This patient already has an appointment at this time.');
     }
 
+    // Add new appointment
     patientData.medical_reports.push(newAppointment);
-
     await writeDataToFile(data);
     res.status(201).json({ message: 'Appointment scheduled successfully', appointment: newAppointment });
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error('Error scheduling appointment:', error);
+    res.status(500).send('Internal server error');
   }
 };
+
+
+

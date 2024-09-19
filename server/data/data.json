@@ -6,7 +6,7 @@
       "last_name": "Johnson",
       "email": "emily.johnson@example.com",
       "password": "securePassword123",
-      "phone_number": "555-9876",
+      "phoneNumber": "555-9876",
       "address": "789 Medical Lane",
       "city": "Toronto",
       "postal_code": "M4P 0C2",
@@ -15,18 +15,20 @@
         {
           "patient_id": "c1b2a4b0-43fc-4d25-b8f4-5d99b7c0e07d",
           "last_name": "Doe",
-          "date_of_birth": "1980-01-15",
-          "phone_number": "555-1234",
+          "dateOfBirth": "1980-01-15",
+          "phoneNumber": "5551234555",
           "email": "john.doe@example.com",
           "address": "123 Elm Street",
           "city": "Toronto",
-          "postal_code": "M4P 0C2",
+          "postalCode": "M4P 0C2",
           "password": "patientSecurePass1",
+          "heartRate": "86",
+          "bloodPressure": "125/85",
           "name": "John Doe",
           "height": "175 cm",
           "weight": "70 kg",
           "gender": "Male",
-          "marital_status": "Married",
+          "maritalStatus": "Married",
           "medical_reports": [
             {
               "date": "2024-07-11",
@@ -143,30 +145,157 @@
               "hemoglobin_a1c": "5.7"
             },
             {
-              "id": "ee090368-13e9-445c-b615-1096348f86b9",
-              "date": "2024-09-20",
-              "time": "11:00",
-              "service": "General Checkup",
-              "doctor": "Emily Johnson",
+              "appointmentId": "00e8f6fe-c531-4ef0-a87c-a010b31b5df1",
+              "appointmentdate": "2024-09-21",
+              "appointmenttime": "12:00",
+              "appointmentservice": "General Checkup",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "John Doe"
+            },
+            {
+              "appointmentId": "33a97391-355d-4fbc-88df-e6e58e479145",
+              "appointmentdate": "2024-09-24",
+              "appointmenttime": "11:00",
+              "appointmentservice": "General Checkup",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "John Doe"
+            },
+            {
+              "appointmentId": "af1355a1-ed47-4359-86c6-307781d1fb24",
+              "appointmentdate": "2024-09-27",
+              "appointmenttime": "12:00",
+              "appointmentservice": "General Checkup",
+              "appointmentdoctor": "Emily Johnson",
               "patient": "John Doe"
             }
           ]
         },
         {
-          "patient_id": "9a0d7c6b-b70d-4c01-a300-4e9076b49d82",
+          "patient_id": "c4fae162-9850-48f6-ad1f-bcd96c150f87",
           "name": "Saba Namdari",
-          "date_of_birth": "1993-01-10",
-          "phone_number": "4375593736",
-          "email": "sabanamdari20@gmail.com",
-          "address": "15 Roehampton Ave.",
+          "dateOfBirth": "1994-10-01",
+          "phoneNumber": "9968973736",
+          "email": "saba@gmail.com",
+          "address": "3218 Guess Rd",
           "city": "Toronto",
-          "postal_code": "M4P 0C2",
-          "password": "S38800514n$",
-          "height": "165 cm",
-          "weight": "60 kg",
+          "postalCode": "M4P 0C2",
+          "password": "123456789sn",
+          "heartRate": "76",
+          "bloodPressure": "120/80",
+          "height": "163",
+          "weight": "55",
           "gender": "Female",
-          "marital_status": "Single",
-          "medical_reports": []
+          "maritalStatus": "Single",
+          "medical_reports": [
+            {
+              "date": "2024-07-15",
+              "complete_blood_count": {
+                "RBC": "4.8",
+                "Hb": "13.8",
+                "HCT": "42.0",
+                "WBC": "6.9"
+              },
+              "basic_metabolic_panel": {
+                "glucose": "85",
+                "calcium": "9.0",
+                "sodium": "138",
+                "potassium": "4.0",
+                "bicarbonate": "22",
+                "chloride": "100",
+                "BUN": "13",
+                "creatinine": "0.9"
+              },
+              "comprehensive_metabolic_panel": {
+                "total_protein": "6.8",
+                "albumin": "4.3",
+                "AST": "21",
+                "ALT": "29",
+                "alkaline_phosphatase": "64"
+              },
+              "lipid_panel": {
+                "total_cholesterol": "180",
+                "LDL": "110",
+                "HDL": "65",
+                "triglycerides": "90"
+              },
+              "thyroid_function_tests": {
+                "TSH": "1.8",
+                "Free_T4": "1.1",
+                "Free_T3": "3.0"
+              },
+              "hemoglobin_a1c": "5.4"
+            },
+            {
+              "date": "2024-08-15",
+              "complete_blood_count": {
+                "RBC": "4.9",
+                "Hb": "13.9",
+                "HCT": "42.5",
+                "WBC": "7.0"
+              },
+              "basic_metabolic_panel": {
+                "glucose": "86",
+                "calcium": "9.1",
+                "sodium": "139",
+                "potassium": "4.1",
+                "bicarbonate": "23",
+                "chloride": "101",
+                "BUN": "14",
+                "creatinine": "1.0"
+              },
+              "comprehensive_metabolic_panel": {
+                "total_protein": "6.9",
+                "albumin": "4.4",
+                "AST": "22",
+                "ALT": "30",
+                "alkaline_phosphatase": "65"
+              },
+              "lipid_panel": {
+                "total_cholesterol": "185",
+                "LDL": "115",
+                "HDL": "66",
+                "triglycerides": "95"
+              },
+              "thyroid_function_tests": {
+                "TSH": "1.9",
+                "Free_T4": "1.2",
+                "Free_T3": "3.1"
+              },
+              "hemoglobin_a1c": "5.5"
+            },
+            {
+              "appointmentId": "128299d6-a7c9-4f6e-af03-ee4128d3b3b6",
+              "appointmentdate": "2024-09-26",
+              "appointmenttime": "13:00",
+              "appointmentservice": "Eye Examination",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "Saba Namdari"
+            },
+            {
+              "appointmentId": "f1d43f35-975c-4733-9d60-12cc38837949",
+              "appointmentdate": "2024-09-23",
+              "appointmenttime": "16:00",
+              "appointmentservice": "Nutritional Counseling",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "Saba Namdari"
+            },
+            {
+              "appointmentId": "6cdb8c04-14ef-4e8c-a264-4957e68f9741",
+              "appointmentdate": "2024-09-24",
+              "appointmenttime": "11:00",
+              "appointmentservice": "Eye Examination",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "Saba Namdari"
+            },
+            {
+              "appointmentId": "982402bd-95d6-4027-b0c8-8821a6770272",
+              "appointmentdate": "2024-09-26",
+              "appointmenttime": "16:00",
+              "appointmentservice": "Blood Test",
+              "appointmentdoctor": "Emily Johnson",
+              "patient": "Saba Namdari"
+            }
+          ]
         }
       ]
     },
@@ -176,7 +305,7 @@
       "last_name": "Lee",
       "email": "sarah.lee@example.com",
       "password": "anotherSecurePassword456",
-      "phone_number": "555-1234",
+      "phoneNumber": "555-1234",
       "address": "101 Health Drive",
       "city": "Toronto",
       "postal_code": "M4P 0C2",
@@ -185,18 +314,20 @@
         {
           "patient_id": "b3f5ed0b-0c07-4f73-b20c-ec706a0f4d52",
           "last_name": "Smith",
-          "date_of_birth": "1990-02-20",
-          "phone_number": "555-5678",
+          "dateOfBirth": "1990-02-20",
+          "phoneNumber": "555-5678",
           "email": "jane.smith@example.com",
           "address": "456 Oak Avenue",
           "city": "Toronto",
-          "postal_code": "M4P 0C2",
+          "postalCode": "M4P 0C2",
           "password": "patientSecurePass2",
           "name": "Jane Smith",
+          "heartRate": "87",
+          "bloodPressure": "128/85",
           "height": "170 cm",
           "weight": "65 kg",
           "gender": "Female",
-          "marital_status": "Married",
+          "maritalStatus": "Married",
           "medical_reports": [
             {
               "date": "2024-07-15",

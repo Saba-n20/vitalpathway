@@ -70,30 +70,136 @@ export const getPatientById = (req, res) => {
 };
 
 
-
-// Sign up new user
-export const SignUp = (req, res) => {
-  const { firstName, lastName, dateOfBirth, phoneNumber, email, address, city, postalCode, password } = req.body;
-  if (!firstName || !lastName || !dateOfBirth || !phoneNumber || !email || !address || !city || !postalCode || !password) {
-    return res.status(400).send('All fields are required');
+// Sample medical reports
+const sampleMedicalReports = [
+  {
+    date: "2024-07-15",
+    complete_blood_count: {
+      RBC: "4.8",
+      Hb: "13.8",
+      HCT: "42.0",
+      WBC: "6.9"
+    },
+    basic_metabolic_panel: {
+      glucose: "85",
+      calcium: "9.0",
+      sodium: "138",
+      potassium: "4.0",
+      bicarbonate: "22",
+      chloride: "100",
+      BUN: "13",
+      creatinine: "0.9"
+    },
+    comprehensive_metabolic_panel: {
+      total_protein: "6.8",
+      albumin: "4.3",
+      AST: "21",
+      ALT: "29",
+      alkaline_phosphatase: "64"
+    },
+    lipid_panel: {
+      total_cholesterol: "180",
+      LDL: "110",
+      HDL: "65",
+      triglycerides: "90"
+    },
+    thyroid_function_tests: {
+      TSH: "1.8",
+      Free_T4: "1.1",
+      Free_T3: "3.0"
+    },
+    hemoglobin_a1c: "5.4"
+  },
+  {
+    date: "2024-08-15",
+    complete_blood_count: {
+      RBC: "4.9",
+      Hb: "13.9",
+      HCT: "42.5",
+      WBC: "7.0"
+    },
+    basic_metabolic_panel: {
+      glucose: "86",
+      calcium: "9.1",
+      sodium: "139",
+      potassium: "4.1",
+      bicarbonate: "23",
+      chloride: "101",
+      BUN: "14",
+      creatinine: "1.0"
+    },
+    comprehensive_metabolic_panel: {
+      total_protein: "6.9",
+      albumin: "4.4",
+      AST: "22",
+      ALT: "30",
+      alkaline_phosphatase: "65"
+    },
+    lipid_panel: {
+      total_cholesterol: "185",
+      LDL: "115",
+      HDL: "66",
+      triglycerides: "95"
+    },
+    thyroid_function_tests: {
+      TSH: "1.9",
+      Free_T4: "1.2",
+      Free_T3: "3.1"
+    },
+    hemoglobin_a1c: "5.5"
   }
+];
+const sampleheartRate= "76";
+const samplebloodPressure = "120"
+
+
+export const SignUp = (req, res) => {
+  const {
+    firstName,
+    lastName,
+    dateOfBirth,
+    phoneNumber,
+    email,
+    address,
+    city,
+    postalCode,
+    password,
+    height,
+    weight,
+    gender,
+    maritalStatus 
+  } = req.body;
+
+  // Validate required fields
+  if (!firstName || !lastName || !dateOfBirth || !phoneNumber || !email || !address || !city || !postalCode || !password || !height || !weight || !gender || !maritalStatus) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  // Validate email format
   const emailRegex = /\S+@\S+\.\S+/;
   if (!emailRegex.test(email)) {
-    return res.status(400).send('Invalid email format');
+    return res.status(400).json({ error: 'Invalid email format' });
   }
+
+  // Validate postal code format
   const postalCodeRegex = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
   if (!postalCodeRegex.test(postalCode)) {
-    return res.status(400).send('Invalid postal code format');
+    return res.status(400).json({ error: 'Invalid postal code format' });
   }
+
+  // Validate phone number format
   const phoneRegex = /^\d{10}$/;
   if (!phoneRegex.test(phoneNumber)) {
-    return res.status(400).send('Invalid phone number format');
+    return res.status(400).json({ error: 'Invalid phone number format' });
   }
+
+  // Read data from file
   readDataFromFile((err, data) => {
     if (err) {
-      res.status(500).send('Internal Server Error');
-      return;
+      console.error("File read error:", err);
+      return res.status(500).json({ error: 'Internal Server Error' });
     }
+
     const newPatient = {
       patient_id: uuidv4(),
       name: `${firstName} ${lastName}`,
@@ -104,22 +210,33 @@ export const SignUp = (req, res) => {
       city,
       postalCode,
       password,
-      medical_reports: []
+      height,
+      weight,
+      heartRate:sampleheartRate,
+      bloodPressure: samplebloodPressure,
+      gender,
+      maritalStatus,
+      medical_reports: sampleMedicalReports 
     };
+
     if (data.doctors.length > 0) {
       data.doctors[0].patients.push(newPatient);
       writeDataToFile(data, (writeErr) => {
         if (writeErr) {
-          res.status(500).send('Error saving data');
-        } else {
-          res.status(201).send('User signed up successfully');
+          console.error("File write error:", writeErr);
+          return res.status(500).json({ error: 'Error saving data' });
         }
+        res.status(201).json({ message: 'User signed up successfully' });
       });
     } else {
-      res.status(400).send('No doctors available to assign the patient');
+      res.status(400).json({ error: 'No doctors available to assign the patient' });
     }
   });
 };
+
+
+
+
 
 // Sign in user
 export const SignIn = (req, res) => {
