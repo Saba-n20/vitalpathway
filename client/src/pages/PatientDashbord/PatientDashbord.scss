@@ -1,0 +1,45 @@
+@use "../../Styles/partials/global" as *;
+@use "../../Styles/partials/variables" as *;
+@use "../../Styles/partials/mixins" as *;
+
+.dashbord{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    &__title-info{
+    padding: 100px;
+    background-image: url("../../assets/images/background.png");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        background: rgba(255, 255, 255, 1);
+    }
+}
+&__title{
+    font-size: 2.1875rem;
+    padding-bottom: 1rem;
+}
+
+&__info{
+    width: 50%;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    text-align: justify;
+}
+}

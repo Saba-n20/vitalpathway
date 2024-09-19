@@ -18,7 +18,15 @@ const fetchDoctors = async () => {
 
 // Simulated API call for fetching services
 const fetchServices = async () => {
-  return ["General Checkup", "Dental Cleaning", "Eye Examination"];
+  return ["General Checkup",
+        "Dental Cleaning",
+        "Eye Examination",
+        "Vaccination",
+        "Blood Test",
+        "X-Ray",
+        "Physiotherapy",
+        "Nutritional Counseling",
+        "Mental Health Evaluation",];
 };
 
 const fetchAvailableSlots = async (date) => {
@@ -126,6 +134,7 @@ const AppointmentForm = () => {
     setPatientName("");
     setAvailableSlots([]);
     setConfirmationMessage("");
+    navigate("/")
   };
 
   if (loading) {

@@ -50,7 +50,8 @@ const SignInForm = () => {
               localStorage.setItem("patientData", JSON.stringify(patientData));
 
               // Redirect to medical reports page
-              navigate("/medical-reports");
+              navigate(`/dashboard/${data.patient_id}`);
+
             } else {
               setErrors((prevErrors) => ({
                 ...prevErrors,

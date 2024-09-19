@@ -6,6 +6,7 @@ import SignInPage from "./pages/SignInPage/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage/SignUpPage.jsx";
 import ScheduleAppointmentPage from "./pages/ScheduleAppointmentPage/ScheduleAppointmentPage.jsx";
 import "./App.scss";
+import PatientDashbord from "./pages/PatientDashbord/PatientDashbord.jsx";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/dashboard/:patientId" element={<PatientDashbord />} />
             <Route path="/schedule-appointment" element={<ScheduleAppointmentPage />} />
           </Routes>
     </BrowserRouter>

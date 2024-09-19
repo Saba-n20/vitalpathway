@@ -27,7 +27,7 @@ const Header = () => {
                 <Link className="header__link" to="/about-us">About Us</Link>
               </button>
               <button className="header__items">
-                <Link className="header__link" to="/medical-reports">Medical Reports</Link>
+                <Link className="header__link" to="/sign-in">Medical Reports</Link>
               </button>
               <button className="header__items">
                 <Link className="header__link" to="/doctors">Doctors</Link>

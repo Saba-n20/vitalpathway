@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./SignUpForm.scss";
 
 const SignUpForm = () => {
@@ -14,9 +14,14 @@ const SignUpForm = () => {
     city: "",
     postalCode: "",
     password: "",
+    height: "",
+    weight: "",
+    gender: "",
+    maritalStatus: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,12 +38,9 @@ const SignUpForm = () => {
 
   const validate = () => {
     const newErrors = {};
-
     for (const [key, value] of Object.entries(formData)) {
       if (!value.trim()) {
-        newErrors[key] = `${key
-          .replace(/([A-Z])/g, " $1")
-          .toUpperCase()} is required`;
+        newErrors[key] = `${key.replace(/([A-Z])/g, " $1").toUpperCase()} is required`;
       }
     }
 
@@ -50,10 +52,7 @@ const SignUpForm = () => {
       newErrors.phoneNumber = "Phone number must be 10 digits";
     }
 
-    if (
-      formData.postalCode &&
-      !/[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d/.test(formData.postalCode)
-    ) {
+    if (formData.postalCode && !/[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d/.test(formData.postalCode)) {
       newErrors.postalCode = "Invalid postal code format";
     }
 
@@ -71,23 +70,22 @@ const SignUpForm = () => {
       return;
     }
 
+    setIsLoading(true); // Start loading
+    console.log("Form Data Submitted:", formData); // Log the form data
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/signup",
-        formData
-      );
-      navigate('/medical-report');
+      const response = await axios.post("http://localhost:8080/signup", formData);
+      navigate("/sign-in");
     } catch (error) {
-      console.error(
-        "There was an error!",
-        error.response?.data || error.message
-      );
+      console.error("There was an error!", error.response?.data || error.message);
       alert("Error signing up");
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
 
   const handleCancel = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -106,9 +104,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
                 required
               />
-              {errors.firstName && (
-                <span className="error">{errors.firstName}</span>
-              )}
+              {errors.firstName && <span className="error">{errors.firstName}</span>}
             </div>
 
             <div className="form__label-txt">
@@ -122,9 +118,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
                 required
               />
-              {errors.lastName && (
-                <span className="error">{errors.lastName}</span>
-              )}
+              {errors.lastName && <span className="error">{errors.lastName}</span>}
             </div>
           </div>
 
@@ -139,9 +133,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
                 required
               />
-              {errors.dateOfBirth && (
-                <span className="error">{errors.dateOfBirth}</span>
-              )}
+              {errors.dateOfBirth && <span className="error">{errors.dateOfBirth}</span>}
             </div>
             <div className="form__label-txt">
               <label className="form__label">Email:</label>
@@ -187,9 +179,7 @@ const SignUpForm = () => {
                 required
                 pattern="\d{10}"
               />
-              {errors.phoneNumber && (
-                <span className="error">{errors.phoneNumber}</span>
-              )}
+              {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>}
             </div>
 
             <div className="form__label-txt">
@@ -219,9 +209,7 @@ const SignUpForm = () => {
                 required
                 pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
               />
-              {errors.postalCode && (
-                <span className="error">{errors.postalCode}</span>
-              )}
+              {errors.postalCode && <span className="error">{errors.postalCode}</span>}
             </div>
 
             <div className="form__label-txt">
@@ -236,15 +224,85 @@ const SignUpForm = () => {
                 required
                 minLength="8"
               />
-              {errors.password && (
-                <span className="error">{errors.password}</span>
-              )}
+              {errors.password && <span className="error">{errors.password}</span>}
+            </div>
+          </div>
+        </div>
+
+        <div className="form__part-three">
+          <div className="form__height-weight">
+            <div className="form__label-txt">
+              <label className="form__label">Height:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="height"
+                placeholder="e.g. 170 cm"
+                value={formData.height}
+                onChange={handleChange}
+                required
+              />
+              {errors.height && <span className="error">{errors.height}</span>}
+            </div>
+
+            <div className="form__label-txt">
+              <label className="form__label">Weight:</label>
+              <input
+                className="form__txt"
+                type="text"
+                name="weight"
+                placeholder="e.g. 65 kg"
+                value={formData.weight}
+                onChange={handleChange}
+                required
+              />
+              {errors.weight && <span className="error">{errors.weight}</span>}
+            </div>
+          </div>
+          <div className="form__gen-marital">
+            <div className="form__label-txt">
+              <label className="form__label">Gender:</label>
+              <select
+                className="form__txt"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              {errors.gender && <span className="error">{errors.gender}</span>}
+            </div>
+
+            <div className="form__label-txt">
+              <label className="form__label">Marital Status:</label>
+              <select
+                className="form__txt"
+                name="maritalStatus"
+                value={formData.maritalStatus}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Select Marital Status
+                </option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+              </select>
+              {errors.maritalStatus && <span className="error">{errors.maritalStatus}</span>}
             </div>
           </div>
         </div>
         <div className="form__btn">
-          <button type="submit" className="form__btn-signup">
-            Create An Account
+          <button type="submit" className="form__btn-signup" disabled={isLoading}>
+            {isLoading ? "Creating Account..." : "Create An Account"}
           </button>
           <button
             type="button"
