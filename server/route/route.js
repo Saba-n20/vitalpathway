@@ -24,18 +24,20 @@ router.get('/signin', (_req, res) => {
 // Route to schedule an appointment
 router.post('/schedule', appointment.scheduleAppointment);
 
-
-// Endpoint to get available slots
-router.get('/available-slots', appointment.getAvailableSlots);
+// Endpoint to get available dates for a doctor
+router.get('/available-dates-times', appointment.getAvailableDatesAndTimes);
 
 // Handle sign-in form submission
 router.post('/signin', controller.SignIn);
+
+// Handle sign-out form submission
+router.post('/signout', controller.SignOut);
 
 // Route to get all patients
 router.get('/patients', controller.getAllPatients);
 
 // Route to get all doctors
-router.get('/doctors', controller.getAllDoctors);
+router.get('/doctors', appointment.getAllDoctors);
 
 // Route to get patient by ID
 router.get('/patients/:id', controller.getPatientById);

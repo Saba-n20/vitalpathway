@@ -1,410 +1,505 @@
 {
+  "patients": [
+    {
+      "patient_id": "c1b2a4b0-43fc-4d25-b8f4-5d99b7c0e07d",
+      "last_name": "Doe",
+      "dateOfBirth": "1980-01-15",
+      "phoneNumber": "5551234555",
+      "email": "john.doe@example.com",
+      "address": "123 Elm Street",
+      "city": "Toronto",
+      "postalCode": "M4P 0C2",
+      "password": "patientSecurePass1",
+      "heartRate": "86",
+      "bloodPressure": "125/85",
+      "name": "John Doe",
+      "height": "175 cm",
+      "weight": "70 kg",
+      "gender": "Male",
+      "maritalStatus": "Married",
+      "medical_reports": [
+        {
+          "date": "2024-07-11",
+          "complete_blood_count": {
+            "RBC": "5.1",
+            "Hb": "14.2",
+            "HCT": "44.5",
+            "WBC": "7.5"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "88",
+            "calcium": "9.1",
+            "sodium": "139",
+            "potassium": "4.1",
+            "bicarbonate": "23",
+            "chloride": "101",
+            "BUN": "14",
+            "creatinine": "1.0"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "6.9",
+            "albumin": "4.4",
+            "AST": "23",
+            "ALT": "31",
+            "alkaline_phosphatase": "67"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "185",
+            "LDL": "115",
+            "HDL": "62",
+            "triglycerides": "95"
+          },
+          "thyroid_function_tests": {
+            "TSH": "2.1",
+            "Free_T4": "1.3",
+            "Free_T3": "3.1"
+          },
+          "hemoglobin_a1c": "5.5"
+        },
+        {
+          "date": "2024-08-11",
+          "complete_blood_count": {
+            "RBC": "5.2",
+            "Hb": "14.6",
+            "HCT": "45.2",
+            "WBC": "7.7"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "90",
+            "calcium": "9.3",
+            "sodium": "140",
+            "potassium": "4.2",
+            "bicarbonate": "24",
+            "chloride": "102",
+            "BUN": "15",
+            "creatinine": "1.1"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "7.0",
+            "albumin": "4.5",
+            "AST": "22",
+            "ALT": "30",
+            "alkaline_phosphatase": "65"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "190",
+            "LDL": "120",
+            "HDL": "60",
+            "triglycerides": "100"
+          },
+          "thyroid_function_tests": {
+            "TSH": "2.0",
+            "Free_T4": "1.2",
+            "Free_T3": "3.0"
+          },
+          "hemoglobin_a1c": "5.6"
+        },
+        {
+          "date": "2024-09-11",
+          "complete_blood_count": {
+            "RBC": "5.3",
+            "Hb": "14.7",
+            "HCT": "46.0",
+            "WBC": "7.8"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "92",
+            "calcium": "9.4",
+            "sodium": "141",
+            "potassium": "4.3",
+            "bicarbonate": "25",
+            "chloride": "103",
+            "BUN": "16",
+            "creatinine": "1.2"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "7.1",
+            "albumin": "4.6",
+            "AST": "24",
+            "ALT": "32",
+            "alkaline_phosphatase": "68"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "195",
+            "LDL": "125",
+            "HDL": "58",
+            "triglycerides": "105"
+          },
+          "thyroid_function_tests": {
+            "TSH": "2.2",
+            "Free_T4": "1.3",
+            "Free_T3": "3.2"
+          },
+          "hemoglobin_a1c": "5.7"
+        }
+      ],
+      "appointments": [
+        {
+          "appointmentId": "00e8f6fe-c531-4ef0-a87c-a010b31b5df1",
+          "appointmentdate": "2024-09-21",
+          "appointmenttime": "12:00",
+          "appointmentservice": "General Checkup",
+          "appointmentdoctor": "Emily Johnson"
+        },
+        {
+          "appointmentId": "33a97391-355d-4fbc-88df-e6e58e479145",
+          "appointmentdate": "2024-09-24",
+          "appointmenttime": "11:00",
+          "appointmentservice": "General Checkup",
+          "appointmentdoctor": "Emily Johnson"
+        },
+        {
+          "appointmentId": "af1355a1-ed47-4359-86c6-307781d1fb24",
+          "appointmentdate": "2024-09-27",
+          "appointmenttime": "12:00",
+          "appointmentservice": "General Checkup",
+          "appointmentdoctor": "Emily Johnson"
+        },
+        {
+          "appointmentId": "34e6ae63-f8be-43ea-aa9f-b01f53b75bff",
+          "appointmentdate": "2024-09-28",
+          "appointmenttime": "13:00",
+          "appointmentservice": "Dental Cleaning",
+          "appointmentdoctor": "Emily Johnson"
+        }
+      ]
+    },
+    {
+      "patient_id": "c4fae162-9850-48f6-ad1f-bcd96c150f87",
+      "name": "Saba Namdari",
+      "dateOfBirth": "1994-10-01",
+      "phoneNumber": "9968973736",
+      "email": "saba@gmail.com",
+      "address": "3218 Guess Rd",
+      "city": "Toronto",
+      "postalCode": "M4P 0C2",
+      "password": "123456789sn",
+      "heartRate": "76",
+      "bloodPressure": "120/80",
+      "height": "163 cm",
+      "weight": "55 kg",
+      "gender": "Female",
+      "maritalStatus": "Single",
+      "medical_reports": [
+        {
+          "date": "2024-07-15",
+          "complete_blood_count": {
+            "RBC": "4.8",
+            "Hb": "13.8",
+            "HCT": "42.0",
+            "WBC": "6.9"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "85",
+            "calcium": "9.0",
+            "sodium": "138",
+            "potassium": "4.0",
+            "bicarbonate": "22",
+            "chloride": "100",
+            "BUN": "13",
+            "creatinine": "0.9"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "6.8",
+            "albumin": "4.3",
+            "AST": "21",
+            "ALT": "29",
+            "alkaline_phosphatase": "64"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "180",
+            "LDL": "110",
+            "HDL": "65",
+            "triglycerides": "90"
+          },
+          "thyroid_function_tests": {
+            "TSH": "1.8",
+            "Free_T4": "1.1",
+            "Free_T3": "3.0"
+          },
+          "hemoglobin_a1c": "5.4"
+        },
+        {
+          "date": "2024-08-15",
+          "complete_blood_count": {
+            "RBC": "4.9",
+            "Hb": "13.9",
+            "HCT": "42.5",
+            "WBC": "7.0"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "86",
+            "calcium": "9.1",
+            "sodium": "139",
+            "potassium": "4.1",
+            "bicarbonate": "23",
+            "chloride": "101",
+            "BUN": "14",
+            "creatinine": "1.0"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "6.9",
+            "albumin": "4.4",
+            "AST": "22",
+            "ALT": "30",
+            "alkaline_phosphatase": "65"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "185",
+            "LDL": "115",
+            "HDL": "60",
+            "triglycerides": "95"
+          },
+          "thyroid_function_tests": {
+            "TSH": "1.9",
+            "Free_T4": "1.2",
+            "Free_T3": "3.1"
+          },
+          "hemoglobin_a1c": "5.5"
+        },
+        {
+          "date": "2024-09-15",
+          "complete_blood_count": {
+            "RBC": "5.0",
+            "Hb": "14.0",
+            "HCT": "43.0",
+            "WBC": "7.2"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "89",
+            "calcium": "9.2",
+            "sodium": "140",
+            "potassium": "4.2",
+            "bicarbonate": "24",
+            "chloride": "102",
+            "BUN": "15",
+            "creatinine": "1.1"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "7.0",
+            "albumin": "4.5",
+            "AST": "23",
+            "ALT": "31",
+            "alkaline_phosphatase": "66"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "190",
+            "LDL": "120",
+            "HDL": "58",
+            "triglycerides": "100"
+          },
+          "thyroid_function_tests": {
+            "TSH": "2.1",
+            "Free_T4": "1.3",
+            "Free_T3": "3.2"
+          },
+          "hemoglobin_a1c": "5.6"
+        },
+        {
+          "appointmentId": "03b2354b-a636-4589-a85e-a62bfcbd0ad5",
+          "appointmentdate": "2024-10-07",
+          "appointmenttime": "09:00",
+          "appointmentservice": "General Checkup",
+          "appointmentdoctor": "Emily Johnson",
+          "patient": "Saba Namdari"
+        },
+        {
+          "appointmentId": "155305b0-677d-4392-b727-7ff77f008f52",
+          "appointmentdate": "2024-10-08",
+          "appointmenttime": "14:00",
+          "appointmentservice": "Stress Test",
+          "appointmentdoctor": "Robert Smith",
+          "patient": "Saba Namdari"
+        }
+      ]
+    }
+  ],
   "doctors": [
     {
-      "doctor_id": "f0b5e474-6b6e-4871-94b0-925f76c5e5c3",
-      "first_name": "Emily",
-      "last_name": "Johnson",
-      "email": "emily.johnson@example.com",
-      "password": "securePassword123",
-      "phoneNumber": "555-9876",
-      "address": "789 Medical Lane",
-      "city": "Toronto",
-      "postal_code": "M4P 0C2",
-      "number_of_patients": 30,
-      "patients": [
+      "doctor_id": "3e07d0bb-b6a5-49aa-b9b4-2e317ab9f799",
+      "name": "Emily Johnson",
+      "specialty": "General Practitioner",
+      "services": [
+        "General Checkup",
+        "Vaccination",
+        "Health Screening"
+      ],
+      "availability": [
         {
-          "patient_id": "c1b2a4b0-43fc-4d25-b8f4-5d99b7c0e07d",
-          "last_name": "Doe",
-          "dateOfBirth": "1980-01-15",
-          "phoneNumber": "5551234555",
-          "email": "john.doe@example.com",
-          "address": "123 Elm Street",
-          "city": "Toronto",
-          "postalCode": "M4P 0C2",
-          "password": "patientSecurePass1",
-          "heartRate": "86",
-          "bloodPressure": "125/85",
-          "name": "John Doe",
-          "height": "175 cm",
-          "weight": "70 kg",
-          "gender": "Male",
-          "maritalStatus": "Married",
-          "medical_reports": [
-            {
-              "date": "2024-07-11",
-              "complete_blood_count": {
-                "RBC": "5.1",
-                "Hb": "14.2",
-                "HCT": "44.5",
-                "WBC": "7.5"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "88",
-                "calcium": "9.1",
-                "sodium": "139",
-                "potassium": "4.1",
-                "bicarbonate": "23",
-                "chloride": "101",
-                "BUN": "14",
-                "creatinine": "1.0"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "6.9",
-                "albumin": "4.4",
-                "AST": "23",
-                "ALT": "31",
-                "alkaline_phosphatase": "67"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "185",
-                "LDL": "115",
-                "HDL": "62",
-                "triglycerides": "95"
-              },
-              "thyroid_function_tests": {
-                "TSH": "2.1",
-                "Free_T4": "1.3",
-                "Free_T3": "3.1"
-              },
-              "hemoglobin_a1c": "5.5"
-            },
-            {
-              "date": "2024-08-11",
-              "complete_blood_count": {
-                "RBC": "5.2",
-                "Hb": "14.6",
-                "HCT": "45.2",
-                "WBC": "7.7"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "90",
-                "calcium": "9.3",
-                "sodium": "140",
-                "potassium": "4.2",
-                "bicarbonate": "24",
-                "chloride": "102",
-                "BUN": "15",
-                "creatinine": "1.1"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "7.0",
-                "albumin": "4.5",
-                "AST": "22",
-                "ALT": "30",
-                "alkaline_phosphatase": "65"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "190",
-                "LDL": "120",
-                "HDL": "60",
-                "triglycerides": "100"
-              },
-              "thyroid_function_tests": {
-                "TSH": "2.0",
-                "Free_T4": "1.2",
-                "Free_T3": "3.0"
-              },
-              "hemoglobin_a1c": "5.6"
-            },
-            {
-              "date": "2024-09-11",
-              "complete_blood_count": {
-                "RBC": "5.3",
-                "Hb": "14.7",
-                "HCT": "46.0",
-                "WBC": "7.8"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "92",
-                "calcium": "9.4",
-                "sodium": "141",
-                "potassium": "4.3",
-                "bicarbonate": "25",
-                "chloride": "103",
-                "BUN": "16",
-                "creatinine": "1.2"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "7.1",
-                "albumin": "4.6",
-                "AST": "24",
-                "ALT": "32",
-                "alkaline_phosphatase": "68"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "195",
-                "LDL": "125",
-                "HDL": "58",
-                "triglycerides": "105"
-              },
-              "thyroid_function_tests": {
-                "TSH": "2.2",
-                "Free_T4": "1.3",
-                "Free_T3": "3.2"
-              },
-              "hemoglobin_a1c": "5.7"
-            },
-            {
-              "appointmentId": "00e8f6fe-c531-4ef0-a87c-a010b31b5df1",
-              "appointmentdate": "2024-09-21",
-              "appointmenttime": "12:00",
-              "appointmentservice": "General Checkup",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "John Doe"
-            },
-            {
-              "appointmentId": "33a97391-355d-4fbc-88df-e6e58e479145",
-              "appointmentdate": "2024-09-24",
-              "appointmenttime": "11:00",
-              "appointmentservice": "General Checkup",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "John Doe"
-            },
-            {
-              "appointmentId": "af1355a1-ed47-4359-86c6-307781d1fb24",
-              "appointmentdate": "2024-09-27",
-              "appointmenttime": "12:00",
-              "appointmentservice": "General Checkup",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "John Doe"
-            }
+          "day": "Monday",
+          "dates": [
+            "2024-10-07",
+            "2024-10-14",
+            "2024-10-21",
+            "2024-10-28"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00"
           ]
         },
         {
-          "patient_id": "c4fae162-9850-48f6-ad1f-bcd96c150f87",
-          "name": "Saba Namdari",
-          "dateOfBirth": "1994-10-01",
-          "phoneNumber": "9968973736",
-          "email": "saba@gmail.com",
-          "address": "3218 Guess Rd",
-          "city": "Toronto",
-          "postalCode": "M4P 0C2",
-          "password": "123456789sn",
-          "heartRate": "76",
-          "bloodPressure": "120/80",
-          "height": "163",
-          "weight": "55",
-          "gender": "Female",
-          "maritalStatus": "Single",
-          "medical_reports": [
-            {
-              "date": "2024-07-15",
-              "complete_blood_count": {
-                "RBC": "4.8",
-                "Hb": "13.8",
-                "HCT": "42.0",
-                "WBC": "6.9"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "85",
-                "calcium": "9.0",
-                "sodium": "138",
-                "potassium": "4.0",
-                "bicarbonate": "22",
-                "chloride": "100",
-                "BUN": "13",
-                "creatinine": "0.9"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "6.8",
-                "albumin": "4.3",
-                "AST": "21",
-                "ALT": "29",
-                "alkaline_phosphatase": "64"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "180",
-                "LDL": "110",
-                "HDL": "65",
-                "triglycerides": "90"
-              },
-              "thyroid_function_tests": {
-                "TSH": "1.8",
-                "Free_T4": "1.1",
-                "Free_T3": "3.0"
-              },
-              "hemoglobin_a1c": "5.4"
-            },
-            {
-              "date": "2024-08-15",
-              "complete_blood_count": {
-                "RBC": "4.9",
-                "Hb": "13.9",
-                "HCT": "42.5",
-                "WBC": "7.0"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "86",
-                "calcium": "9.1",
-                "sodium": "139",
-                "potassium": "4.1",
-                "bicarbonate": "23",
-                "chloride": "101",
-                "BUN": "14",
-                "creatinine": "1.0"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "6.9",
-                "albumin": "4.4",
-                "AST": "22",
-                "ALT": "30",
-                "alkaline_phosphatase": "65"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "185",
-                "LDL": "115",
-                "HDL": "66",
-                "triglycerides": "95"
-              },
-              "thyroid_function_tests": {
-                "TSH": "1.9",
-                "Free_T4": "1.2",
-                "Free_T3": "3.1"
-              },
-              "hemoglobin_a1c": "5.5"
-            },
-            {
-              "appointmentId": "128299d6-a7c9-4f6e-af03-ee4128d3b3b6",
-              "appointmentdate": "2024-09-26",
-              "appointmenttime": "13:00",
-              "appointmentservice": "Eye Examination",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "Saba Namdari"
-            },
-            {
-              "appointmentId": "f1d43f35-975c-4733-9d60-12cc38837949",
-              "appointmentdate": "2024-09-23",
-              "appointmenttime": "16:00",
-              "appointmentservice": "Nutritional Counseling",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "Saba Namdari"
-            },
-            {
-              "appointmentId": "6cdb8c04-14ef-4e8c-a264-4957e68f9741",
-              "appointmentdate": "2024-09-24",
-              "appointmenttime": "11:00",
-              "appointmentservice": "Eye Examination",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "Saba Namdari"
-            },
-            {
-              "appointmentId": "982402bd-95d6-4027-b0c8-8821a6770272",
-              "appointmentdate": "2024-09-26",
-              "appointmenttime": "16:00",
-              "appointmentservice": "Blood Test",
-              "appointmentdoctor": "Emily Johnson",
-              "patient": "Saba Namdari"
-            }
+          "day": "Wednesday",
+          "dates": [
+            "2024-10-02",
+            "2024-10-09",
+            "2024-10-16",
+            "2024-10-23",
+            "2024-10-30"
+          ],
+          "time": [
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00"
+          ]
+        },
+        {
+          "day": "Friday",
+          "dates": [
+            "2024-10-04",
+            "2024-10-11",
+            "2024-10-18",
+            "2024-10-25"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00"
           ]
         }
       ]
     },
     {
-      "doctor_id": "a9fce5c1-5b7b-4d07-91b4-f60a9a1dc5a4",
-      "first_name": "Sarah",
-      "last_name": "Lee",
-      "email": "sarah.lee@example.com",
-      "password": "anotherSecurePassword456",
-      "phoneNumber": "555-1234",
-      "address": "101 Health Drive",
-      "city": "Toronto",
-      "postal_code": "M4P 0C2",
-      "number_of_patients": 25,
-      "patients": [
+      "doctor_id": "a7e6c10c-f56a-4e45-b473-167a98e5f812",
+      "name": "Robert Smith",
+      "specialty": "Cardiologist",
+      "services": [
+        "Cardiac Checkup",
+        "Echocardiogram",
+        "Stress Test"
+      ],
+      "availability": [
         {
-          "patient_id": "b3f5ed0b-0c07-4f73-b20c-ec706a0f4d52",
-          "last_name": "Smith",
-          "dateOfBirth": "1990-02-20",
-          "phoneNumber": "555-5678",
-          "email": "jane.smith@example.com",
-          "address": "456 Oak Avenue",
-          "city": "Toronto",
-          "postalCode": "M4P 0C2",
-          "password": "patientSecurePass2",
-          "name": "Jane Smith",
-          "heartRate": "87",
-          "bloodPressure": "128/85",
-          "height": "170 cm",
-          "weight": "65 kg",
-          "gender": "Female",
-          "maritalStatus": "Married",
-          "medical_reports": [
-            {
-              "date": "2024-07-15",
-              "complete_blood_count": {
-                "RBC": "4.8",
-                "Hb": "13.8",
-                "HCT": "42.0",
-                "WBC": "6.9"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "85",
-                "calcium": "9.0",
-                "sodium": "138",
-                "potassium": "4.0",
-                "bicarbonate": "22",
-                "chloride": "100",
-                "BUN": "13",
-                "creatinine": "0.9"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "6.8",
-                "albumin": "4.3",
-                "AST": "21",
-                "ALT": "29",
-                "alkaline_phosphatase": "64"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "180",
-                "LDL": "110",
-                "HDL": "65",
-                "triglycerides": "90"
-              },
-              "thyroid_function_tests": {
-                "TSH": "1.8",
-                "Free_T4": "1.1",
-                "Free_T3": "3.0"
-              },
-              "hemoglobin_a1c": "5.4"
-            },
-            {
-              "date": "2024-08-15",
-              "complete_blood_count": {
-                "RBC": "4.9",
-                "Hb": "13.9",
-                "HCT": "42.5",
-                "WBC": "7.0"
-              },
-              "basic_metabolic_panel": {
-                "glucose": "86",
-                "calcium": "9.1",
-                "sodium": "139",
-                "potassium": "4.1",
-                "bicarbonate": "23",
-                "chloride": "101",
-                "BUN": "14",
-                "creatinine": "1.0"
-              },
-              "comprehensive_metabolic_panel": {
-                "total_protein": "6.9",
-                "albumin": "4.4",
-                "AST": "22",
-                "ALT": "30",
-                "alkaline_phosphatase": "65"
-              },
-              "lipid_panel": {
-                "total_cholesterol": "185",
-                "LDL": "115",
-                "HDL": "66",
-                "triglycerides": "95"
-              },
-              "thyroid_function_tests": {
-                "TSH": "1.9",
-                "Free_T4": "1.2",
-                "Free_T3": "3.1"
-              },
-              "hemoglobin_a1c": "5.5"
-            }
+          "day": "Tuesday",
+          "dates": [
+            "2024-10-01",
+            "2024-10-08",
+            "2024-10-15",
+            "2024-10-22",
+            "2024-10-29"
+          ],
+          "time": [
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "dates": [
+            "2024-10-03",
+            "2024-10-10",
+            "2024-10-17",
+            "2024-10-24",
+            "2024-10-31"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00"
+          ]
+        }
+      ]
+    },
+    {
+      "doctor_id": "e5f39f8e-e248-4d9f-b52f-9c9bb9fbe0f4",
+      "name": "Alice Brown",
+      "specialty": "Dermatologist",
+      "services": [
+        "Skin Consultation",
+        "Mole Check",
+        "Acne Treatment"
+      ],
+      "availability": [
+        {
+          "day": "Monday",
+          "dates": [
+            "2024-10-07",
+            "2024-10-14",
+            "2024-10-21",
+            "2024-10-28"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00"
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "dates": [
+            "2024-10-02",
+            "2024-10-09",
+            "2024-10-16",
+            "2024-10-23",
+            "2024-10-30"
+          ],
+          "time": [
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00"
+          ]
+        }
+      ]
+    },
+    {
+      "doctor_id": "c4faea7d-8a34-4c2e-b8a0-2cd6d0f4c9bc",
+      "name": "Mark Wilson",
+      "specialty": "Dentist",
+      "services": [
+        "Dental Cleaning",
+        "Cavity Filling",
+        "Teeth Whitening"
+      ],
+      "availability": [
+        {
+          "day": "Tuesday",
+          "dates": [
+            "2024-10-01",
+            "2024-10-08",
+            "2024-10-15",
+            "2024-10-22",
+            "2024-10-29"
+          ],
+          "time": [
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00"
+          ]
+        },
+        {
+          "day": "Thursday",
+          "dates": [
+            "2024-10-03",
+            "2024-10-10",
+            "2024-10-17",
+            "2024-10-24",
+            "2024-10-31"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00"
           ]
         }
       ]

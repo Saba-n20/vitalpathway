@@ -34,18 +34,22 @@ const writeDataToFile = (data, callback) => {
 export const getAllPatients = (req, res) => {
   readDataFromFile((err, data) => {
     if (err) {
-      res.status(500).send('Internal Server Error');
-      return;
+      return res.status(500).send('Internal Server Error');
     }
-    const patients = data.doctors.flatMap(doctor => doctor.patients);
+
+    // Directly access the patients array
+    const patients = data.patients;
+
+    // Send the patients data
     res.json(patients);
   });
 };
 
+
 // Get patients by ID
 export const getPatientById = (req, res) => {
   const { id } = req.params;
-  console.log("Requested Patient ID:", id); // Log the requested ID
+  console.log("Requested Patient ID:", id); 
 
   readDataFromFile((err, data) => {
     if (err) {
@@ -53,11 +57,11 @@ export const getPatientById = (req, res) => {
       return res.status(500).send('Internal Server Error');
     }
 
-    // Log the data structure to verify it
+    
     console.log("Data read from file:", JSON.stringify(data, null, 2));
 
-    const patient = data.doctors.flatMap(doctor => doctor.patients)
-                                .find(patient => patient.patient_id === id);
+    
+    const patient = data.patients.find(patient => patient.patient_id === id);
     
     if (patient) {
       console.log("Patient found:", patient);
@@ -68,6 +72,27 @@ export const getPatientById = (req, res) => {
     }
   });
 };
+
+// Get all services
+export const getAllServices = (req, res) => {
+  readDataFromFile((err, data) => {
+    if (err) {
+      return res.status(500).send('Internal Server Error');
+    }
+
+    // Ensure services array exists and is populated
+    if (!data || !data.services) {
+      return res.status(404).send('No services found');
+    }
+
+    
+    const services = data.services;
+
+    
+    res.json(services);
+  });
+};
+
 
 
 // Sample medical reports
@@ -243,46 +268,69 @@ export const SignIn = (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-      return res.status(400).send('Email and password are required');
+    return res.status(400).send('Email and password are required');
   }
 
   readDataFromFile((err, data) => {
-      if (err) {
-          return res.status(500).send('Internal Server Error');
-      }
+    if (err) {
+      return res.status(500).send('Internal Server Error');
+    }
 
-      const user = data.doctors.flatMap(doctor => doctor.patients)
-                              .find(patient => patient.email === email);
+    const user = data.patients.find(patient => patient.email === email);
 
-      if (!user) {
-          return res.status(404).send('User not found');
-      }
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
 
-      if (user.password !== password) {
-          return res.status(401).send('Incorrect password');
-      }
+    if (user.password !== password) {
+      return res.status(401).send('Incorrect password');
+    }
 
-      // Successfully authenticated, return patient ID
-      res.json({ success: true, patient_id: user.patient_id });
+    // Successfully authenticated, return patient ID
+    res.json({ success: true, patient_id: user.patient_id });
   });
 };
 
 
 
-// Get all doctors
-export const getAllDoctors = (req, res) => {
+
+// Sign Out user
+export const SignOut = (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+    res.clearCookie('connect.sid');
+    res.json({ success: true, message: 'Successfully signed out' });
+  });
+};
+
+
+
+// Get doctors for a specific service
+export const getDoctorsForService = (req, res) => {
+  const serviceId = req.params.id;
+
   readDataFromFile((err, data) => {
     if (err) {
-      res.status(500).send('Internal Server Error');
-      return;
+      return res.status(500).send('Internal Server Error');
     }
-    const doctors = data.doctors.map(doctor => ({
-      id: doctor.doctor_id,
-      name: `${doctor.first_name} ${doctor.last_name}`
-    }));
+
+    // Find doctors that offer the requested service
+    const doctors = data.doctors.filter(doctor => 
+      doctor.services.includes(serviceId)
+    );
+
+    if (doctors.length === 0) {
+      return res.status(404).send('No doctors found for this service');
+    }
+
     res.json(doctors);
   });
 };
+
+
+
 
 
 export { readDataFromFile, writeDataToFile };

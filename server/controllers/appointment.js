@@ -11,7 +11,7 @@ const appointmentsFilePath = path.join(__dirname, '../data/data.json');
 const readDataFromFile = async () => {
   try {
     const data = await fs.promises.readFile(appointmentsFilePath, 'utf8');
-    return data ? JSON.parse(data) : { doctors: [] };
+    return data ? JSON.parse(data) : { doctors: [], patients: [] };
   } catch (error) {
     console.error('Error reading file:', error);
     throw new Error('Unable to read data');
@@ -29,86 +29,124 @@ const writeDataToFile = async (data) => {
 };
 
 // Helper function to find available slots
-const findAvailableSlots = (doctors, date) => {
-  const slots = [];
+const findAvailableSlots = (doctor, patients, date) => {
   const allPossibleTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
   const takenTimes = new Set();
 
-  doctors.forEach(doctor => {
-    doctor.patients.forEach(patient => {
-      patient.medical_reports.forEach(report => {
-        if (report.date === date && report.time) {
-          takenTimes.add(report.time);
-        }
-      });
+  // Collect all taken times for the given date from all patients
+  patients.forEach(patient => {
+    patient.medical_reports.forEach(report => {
+      if (report.appointmentdate === date && report.appointmentdoctor === doctor.name) {
+        takenTimes.add(report.appointmenttime);
+      }
     });
   });
 
-  allPossibleTimes.forEach(time => {
-    if (!takenTimes.has(time)) {
-      slots.push(time);
-    }
-  });
-
-  return slots;
+  // Filter available slots by excluding taken times
+  return allPossibleTimes.filter(time => !takenTimes.has(time));
 };
 
-// Endpoint to get available slots
-export const getAvailableSlots = async (req, res) => {
-  const { date } = req.query;
-  if (!date) {
-    return res.status(400).send('Date is required');
+// New Endpoint to get available dates and times for a specific doctor
+export const getAvailableDatesAndTimes = async (req, res) => {
+  const { doctorId } = req.query;
+  if (!doctorId) {
+    return res.status(400).send('Doctor ID is required');
   }
 
   try {
     const data = await readDataFromFile();
-    const availableSlots = findAvailableSlots(data.doctors, date);
-    res.json({ availableSlots });
-  } catch (error) {
-    console.error('Error getting available slots:', error);
-    res.status(500).send('Internal server error');
-  }
-};
-
-export const scheduleAppointment = async (req, res) => {
-  const { date, time, service, doctorName, patient } = req.body;
-
-  // Validate input fields
-  if (!date) return res.status(400).send('Date is required');
-  if (!time) return res.status(400).send('Time is required');
-  if (!service) return res.status(400).send('Service is required');
-  if (!doctorName) return res.status(400).send('Doctor name is required');
-  if (!patient) return res.status(400).send('Patient name is required');
-
-  console.log('Received appointment request:', { date, time, service, doctorName, patient });
-
-  try {
-    const data = await readDataFromFile();
-    
-    // Create new appointment
-    const newAppointment = {
-      appointmentId: uuidv4(),
-      appointmentdate: date,
-      appointmenttime: time,
-      appointmentservice: service,
-      appointmentdoctor: doctorName,
-      patient
-    };
-
-    // Find doctor
-    const doctor = data.doctors.find(doc => `${doc.first_name} ${doc.last_name}` === doctorName);
+    const doctor = data.doctors.find(doc => doc.doctor_id === doctorId);
     if (!doctor) {
       return res.status(404).send('Doctor not found');
     }
 
-    // Find patient
-    const patientData = doctor.patients.find(p => p.name === patient);
+    const availableDates = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      const dateString = date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+      const availableSlots = findAvailableSlots(doctor, data.patients, dateString);
+      if (availableSlots.length > 0) {
+        availableDates.push({ date: dateString, availableSlots });
+      }
+    }
+
+    res.json({ availableDates });
+  } catch (error) {
+    console.error('Error getting available dates and times:', error);
+    res.status(500).send('Internal server error');
+  }
+};
+
+// Get all services from doctors
+export const getAllServices = async (req, res) => {
+  try {
+    const data = await readDataFromFile();
+    const servicesSet = new Set();
+
+    data.doctors.forEach(doctor => {
+      doctor.services.forEach(service => servicesSet.add(service));
+    });
+
+    const services = Array.from(servicesSet).map(service => ({ service_name: service }));
+    res.json(services);
+  } catch (error) {
+    console.error('Error getting services:', error);
+    res.status(500).send('Internal server error');
+  }
+};
+
+// Get all doctors
+export const getAllDoctors = async (req, res) => {
+  try {
+    const data = await readDataFromFile();
+    const doctors = data.doctors.map(doctor => ({
+      id: doctor.doctor_id,
+      name: doctor.name,
+      specialty: doctor.specialty,
+      phoneNumber: doctor.phoneNumber,
+      email: doctor.email,
+      address: doctor.address,
+      services: doctor.services,
+      availability: doctor.availability
+    }));
+
+    res.json(doctors);
+  } catch (error) {
+    console.error('Error getting doctors:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+
+
+// Endpoint to schedule an appointment
+export const scheduleAppointment = async (req, res) => {
+  const { date, time, service, doctor_id, patientName } = req.body; 
+
+  // Check for all required fields
+  if (!date || !time || !service || !doctor_id || !patientName) { 
+    return res.status(400).send('All fields are required');
+  }
+
+  try {
+    const data = await readDataFromFile();
+    
+    // Check if the doctor exists
+    const doctor = data.doctors.find(doc => doc.doctor_id === doctor_id); 
+    if (!doctor) {
+      return res.status(404).send(`Doctor not found: ${doctor_id}`); 
+    }
+
+    // Check if the patient exists
+    const patientData = data.patients.find(p => p.name === patientName);
     if (!patientData) {
       return res.status(404).send('Patient not found');
     }
 
-    // Check for existing appointment
-    const existingAppointment = patientData.medical_reports.find(appointment => 
+    // Check for existing appointments
+    const existingAppointment = patientData.medical_reports.find(appointment =>
       appointment.appointmentdate === date && appointment.appointmenttime === time
     );
 
@@ -116,15 +154,28 @@ export const scheduleAppointment = async (req, res) => {
       return res.status(409).send('This patient already has an appointment at this time.');
     }
 
-    // Add new appointment
+    // Create new appointment object
+    const newAppointment = {
+      appointmentId: uuidv4(), 
+      appointmentdate: date,
+      appointmenttime: time,
+      appointmentservice: service,
+      appointmentdoctor: doctor.name,
+      patient: patientName
+    };
+
+    // Add the new appointment to the patient's records
     patientData.medical_reports.push(newAppointment);
+    
+    // Write updated data back to the file
     await writeDataToFile(data);
+    
+    // Respond with success message
     res.status(201).json({ message: 'Appointment scheduled successfully', appointment: newAppointment });
   } catch (error) {
     console.error('Error scheduling appointment:', error);
     res.status(500).send('Internal server error');
   }
 };
-
 
 
