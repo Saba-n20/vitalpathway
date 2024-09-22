@@ -40,18 +40,25 @@ const SignInForm = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log("Sign-In Response:", data); // Log the response
           if (data.success) {
+            const patientId = data.patient_id;
+            if (!patientId) {
+              setErrors((prevErrors) => ({
+                ...prevErrors,
+                server: "Patient ID is not available. Please contact support.",
+              }));
+              return;
+            }
+
             // Fetch the patient's data using the email
-            const patientResponse = await fetch(`http://localhost:8080/patients/${data.patient_id}`);
+            const patientResponse = await fetch(`http://localhost:8080/patients/${patientId}`);
             if (patientResponse.ok) {
               const patientData = await patientResponse.json();
-
               // Store all patient data in localStorage
               localStorage.setItem("patientData", JSON.stringify(patientData));
-
               // Redirect to medical reports page
-              navigate(`/dashboard/${data.patient_id}`);
-
+              navigate(`/dashboard/${patientId}`);
             } else {
               setErrors((prevErrors) => ({
                 ...prevErrors,

@@ -8,368 +8,349 @@
   width: 100%;
 
   &__personal-img {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
   }
   &__image {
     width: 150px;
   }
 
-  &__titles {
-    display: flex;
-    flex-direction: column;
-    color: $vitalpathway-black;
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 0px;
+    color: $vitalpathway-darkblue; 
   }
-  &__sub {
-    padding-left: 16px;
-    padding-top: 8px;
+  &__sub{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: $vitalpathway-darkblue; 
   }
-  &__personal-info {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  &__personal-info-phone-email-dob-marital {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    border: 2px solid $vitalpathway-button;
-    border-radius: 8px;
-  }
-  &__personal-info-gender-address-city-pc {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    border: 2px solid $vitalpathway-button;
-    border-radius: 8px;
-  }
-  &__personal-info-label {
-    color: $vitalpathway-button;
-    font-size: 20px;
-    padding-bottom: 8px;
-    width: 100%;
-  }
-  &__personal-info-name {
-    display: flex;
-    flex-direction: column;
-    font-size: 30px;
-    color: $vitalpathway-black;
-    border: 2px solid $vitalpathway-button;
-    border-radius: 8px;
-    padding: 20px;
-  }
-  &__personal-info-phone {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightblue;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-address {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightblue;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-gender {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightblue;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-marital {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-email {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightblue;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-dob {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightblue;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__personal-info-pc {
-    display: flex;
-    flex-direction: column;
-    padding-left: 32px;
-    font-size: 25px;
-    color: $vitalpathway-black;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-}
-
-.generalPart {
-  display: flex;
-  flex-direction: column;
-  padding-top: 32px;
-  width: 100%;
-
-  &__image {
-    width: 100px;
-  }
-  &__img-title {
-    width: 100%;
+  
+  &__img-btn {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
+  &__btn-sign-out {
+    height: 45px;
+    width: 10%;
+    margin-top: 1rem;
+    border: 0.0625rem solid $vitalpathway-darkblue;
+    border-radius: 0.625rem;
+    background-color: $vitalpathway-darkblue;
+    color: $white;
+    font-size: 0.9375rem;
+    &:hover {
+      background-color: $vitalpathway-button;
+    }
+  }
+}
+
+.personalinfo {
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  &__detail {
+    padding: 15px;
+    border: 2px solid #42a5f5; // Light blue border
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(30, 136, 229, 0.2); // Shadow for depth
+    animation: fadeIn 0.5s ease-in-out; // Animation on mount
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(30, 136, 229, 0.3); // Enhanced shadow on hover
+      transform: translateY(-2px); // Slight lift effect
+    }
+
+    &__label {
+      font-weight: 500;
+      color: #1976d2; // Medium blue for labels
+    }
+
+    &__value {
+      font-weight: bold;
+      color: #0d47a1; // Dark blue for values
+    }
+  }
+}
+
+// Keyframes for fade-in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.healthinfo {
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &__title-img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
     padding-left: 16px;
+    color: $vitalpathway-darkblue;  
   }
-  &__info {
-    display: flex;
-    flex-direction: row;
-    padding-top: 16px;
-    margin: 0px 150px;
-  }
-  &__bmi-h-w {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    border: 2px solid $vitalpathway-green;
-    border-radius: 8px;
+  &__image {
+    width: 100px;
+    margin-bottom: 20px;
   }
 
-  &__normalpart-blood-pressure {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightgreen;
-  }
-  &__normalpart-heartrate {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightgreen;
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 
-  &__heart-blood {
-    width: 50%;
+  &__metric {
+    padding: 15px;
+    border: 2px solid #4caf50; // Medium green border
+    border-radius: 5px;
     display: flex;
-    flex-direction: column;
-    border: 2px solid $vitalpathway-green;
-    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); // Shadow for depth
+    animation: fadeIn 0.5s ease-in-out; // Animation on mount
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 128, 0, 0.3); // Enhanced shadow on hover
+      transform: translateY(-2px); // Slight lift effect
+    }
+
+    &__label {
+      font-weight: 500;
+      color: #388e3c; // Medium dark green for labels
+    }
+
+    &__value {
+      font-weight: bold;
+      color: #1b5e20; // Darker green for values
+    }
   }
-  &__normal-part {
-    width: 50%;
+}
+
+// Keyframes for fade-in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+$primary-color: #4a90e2; /* Primary color */
+$hover-color: #357ab8; /* Hover color */
+$even-row-color: #f5f7fa; /* Even row background color */
+$text-color: #333; /* Text color */
+
+
+
+.appointments {
+  text-align: center;
+  margin: 40px 0;
+
+  &__title-img{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    
+    align-items: center;
+  }
+
+  &__image {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 0px;
+    color: $vitalpathway-darkblue; 
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    padding-left: 32px;
+    gap: 20px;
+  }
+
+  &__card {
+    background: linear-gradient(135deg, #e8f0f2, #f9f9f9); 
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    height: 150px;
+    width: 100%;
+    width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+      transform: translateY(-4px);
+    }
+
+    &__information{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      strong {
+        color: #3498db; // Bright blue for labels
+        font-size: 1.1em;
+        margin-right: 5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      span {
+        color: #34495e; // Darker slate for text
+        font-size: 1em;
+
+      }
+    }
+  }
+
+  &__no-data {
+    color: #7f8c8d; // Muted gray for no data message
+    font-size: 1.5em;
+    margin-top: 15px;
+    font-style: italic;
+  }
+}
+
+
+
+
+.medicalreports {
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &__title-img{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
-  &__label {
-    color: $vitalpathway-green;
-    font-size: 20px;
-    padding-bottom: 10px;
-    width: 100%;
-  }
-  &__num {
-    color: $vitalpathway-black;
-    font-size: 20px;
-    padding-top: 10px;
-    width: 100%;
-  }
-  &__normal-num {
-    color: $vitalpathway-black;
-    font-size: 15px;
-    padding-top: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  &__normal-part-label {
-    color: $vitalpathway-black;
-    font-size: 17px;
-    text-align: center;
-    width: 100%;
-  }
-  &__height {
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightgreen;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__weight {
-    color: $vitalpathway-black;
-    border-bottom: 2px solid $vitalpathway-lightgreen;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__bmi {
-    color: $vitalpathway-black;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__heart {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-  &__blood-pressure {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 16px;
-  }
-}
 
-.appointments {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   &__title {
-    padding-top: 20px;
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    color: $vitalpathway-black;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: $vitalpathway-darkblue; 
+    padding-left: 16px;
+    padding-top: 10px;
+    text-align: center;
   }
 
   &__image {
-    width: 145px;
+    display: block;
+    width: 100px;
   }
 
-  &__table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1em;
-    background-color: $vitalpathway-lightblue;
-    border-radius: 8px;
-    overflow: hidden;
+  &__report-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #3498db; // Blue border
+    border-radius: 5px;
+    background-color: #ffffff; // White background
   }
 
-  &__thead {
-    background-color: $vitalpathway-background;
-    color: $vitalpathway-darkblue;
+  &__report-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2980b9; // Lighter blue for report titles
   }
 
-  &__th {
-    border: 1px solid $vitalpathway-darkblue;
+  &__details {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  &__test-partone{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
-    text-align: left;
-    border-radius: 4px;
   }
-
-  &__td {
-    border: 1px solid $vitalpathway-darkblue;
+  &__test-parttwo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
-    text-align: left;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-}
-
-.appointments__table tr:nth-child(even) {
-  background-color: $vitalpathway-hoverbtn;
-}
-
-.appointments__table tr:hover {
-  background-color: $vitalpathway-button;
-  color: white;
-}
-
-.medicalreports {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  &__title {
-    padding-top: 35px;
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    color: $vitalpathway-black;
   }
 
-  &__image {
-    width: 135px;
+  &__test {
+    margin-bottom: 15px; /* Space between tests */
+  }
+  &__test-thyroid{
+    margin-bottom: 15px;
+    padding-top: 25px;
   }
 
-  &__table {
-    width: 100%;
-    border-collapse: separate; // Use separate borders for rounded corners
-    border-spacing: 0; // Remove spacing between cells
-    margin-top: 1em;
-    background-color: $vitalpathway-lightblue;
-    border-radius: 8px;
-    overflow: hidden;
+  &__test-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c; // Red for test titles
   }
 
-  &__thead {
-    background-color: $vitalpathway-darkblue;
-    color: white;
+  &__test-value {
+    font-size: 14px;
+    color: #34495e; // Dark gray for test values
+    margin-left: 10px; /* Indent values for clarity */
+    padding: 5px;
   }
 
-  &__th {
-    border: 1px solid $vitalpathway-darkblue;
-    padding: 10px;
+  &__no-data {
     text-align: center;
-  }
-
-  &__td {
-    border: 1px solid $vitalpathway-darkblue;
-    padding: 10px;
-    text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  &__tr {
-    &:nth-child(even) {
-      background-color: $even-row-bg; // Style for even rows
-    }
-
-    &:hover {
-      background-color: $vitalpathway-button; // Hover effect
-      color: white;
-    }
-
-    &:first-child {
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
+    font-style: italic;
+    color: #7f8c8d; // Gray for no data message
+    padding: 20px 0;
   }
 }
+

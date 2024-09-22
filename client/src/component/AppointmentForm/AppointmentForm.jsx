@@ -2,46 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AppointmentForm.scss";
 
-// Fetch doctors from your backend
 const fetchDoctors = async () => {
   try {
     const response = await fetch("http://localhost:8080/doctors");
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("Failed to fetch doctors");
     }
     return await response.json();
   } catch (error) {
-    console.error("Failed to fetch doctors:", error);
+    console.error("Error fetching doctors:", error);
     return [];
-  }
-};
-
-// Simulated API call for fetching services
-const fetchServices = async () => {
-  return ["General Checkup",
-        "Dental Cleaning",
-        "Eye Examination",
-        "Vaccination",
-        "Blood Test",
-        "X-Ray",
-        "Physiotherapy",
-        "Nutritional Counseling",
-        "Mental Health Evaluation",];
-};
-
-const fetchAvailableSlots = async (date) => {
-  try {
-    const response = await fetch(
-      `http://localhost:8080/available-slots?date=${date}`
-    );
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Network response was not ok: ${errorText}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Failed to fetch available slots:", error);
-    return { availableSlots: [] }; // Default return value
   }
 };
 
@@ -53,39 +23,74 @@ const AppointmentForm = () => {
   const [patientName, setPatientName] = useState("");
   const [services, setServices] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const [availableSlots, setAvailableSlots] = useState([]);
+  const [availableDates, setAvailableDates] = useState([]);
+  const [availableTimes, setAvailableTimes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [selectedDoctorId, setSelectedDoctorId] = useState(""); // Keep as is for local state
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadInitialData = async () => {
+    const loadDoctors = async () => {
+      setLoading(true);
       try {
-        const fetchedServices = await fetchServices();
         const fetchedDoctors = await fetchDoctors();
-        console.log("Fetched doctors:", fetchedDoctors); // Debugging line
-        setServices(fetchedServices);
         setDoctors(fetchedDoctors);
       } catch (error) {
-        console.error("Error loading data:", error); // Log any errors
+        console.error("Error loading initial data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    loadInitialData();
+    loadDoctors();
   }, []);
 
-  const handleDateChange = async (event) => {
+  const handleDoctorChange = (event) => {
+    const doctorName = event.target.value;
+    setSelectedDoctor(doctorName);
+    
+    // Find the doctor based on the selected name
+    const selectedDoc = doctors.find((doctor) => doctor.name === doctorName);
+    
+    // Log the selected doctor object for debugging
+    console.log("Selected Doctor Object:", selectedDoc);
+    
+    if (selectedDoc) {
+      setSelectedDoctorId(selectedDoc.id); // Change to 'id'
+      console.log("Selected Doctor ID:", selectedDoc.id); // Log the ID
+      setServices(selectedDoc.services || []);
+      setAvailableDates(selectedDoc.availability || []);
+      setDate(""); // Reset date and time selections
+      setTime("");
+      setAvailableTimes([]);
+    } else {
+      console.log("No doctor found with the name:", doctorName);
+    }
+  };
+  
+  
+
+  const handleDateChange = (event) => {
     const selectedDate = event.target.value;
     setDate(selectedDate);
 
-    if (selectedDate) {
-      const result = await fetchAvailableSlots(selectedDate);
-      setAvailableSlots(result.availableSlots);
-    } else {
-      setAvailableSlots([]);
+    const selectedDoc = doctors.find((doc) => doc.name === selectedDoctor);
+    if (selectedDoc) {
+      const availabilityForDate = selectedDoc.availability.find(
+        (availability) => availability.dates.includes(selectedDate)
+      );
+
+      if (availabilityForDate) {
+        setAvailableTimes(availabilityForDate.time);
+      } else {
+        setAvailableTimes([]);
+      }
     }
+  };
+
+  const handleServiceChange = (event) => {
+    setSelectedService(event.target.value);
   };
 
   const handleConfirm = async () => {
@@ -93,12 +98,20 @@ const AppointmentForm = () => {
       date,
       time,
       service: selectedService,
-      doctorName: selectedDoctor,
-      patient: patientName,
+      doctor_id: selectedDoctorId, // Change to doctor_id
+      patientName,
     };
 
-    console.log("Sending appointment data:", appointmentData);
-
+    console.log("Payload being sent:", appointmentData); // Log the data
+    
+    // Check if any field is empty
+    if (!date || !time || !selectedService || !selectedDoctorId || !patientName) {
+      console.log("One or more fields are empty.");
+      console.log(`Date: ${date}, Time: ${time}, Service: ${selectedService}, DoctorId: ${selectedDoctorId}, Patient Name: ${patientName}`);
+      setConfirmationMessage("All fields are required.");
+      return;
+    }
+  
     try {
       const response = await fetch("http://localhost:8080/schedule", {
         method: "POST",
@@ -107,34 +120,41 @@ const AppointmentForm = () => {
         },
         body: JSON.stringify(appointmentData),
       });
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Failed to schedule appointment: ${errorText}`);
       }
-
-      const data = await response.json();
-      console.log("Appointment scheduled:", data);
+  
       setConfirmationMessage("Appointment scheduled successfully!");
-      // Optionally navigate to another page
-      // navigate('/some-path');
+      // Clear form after successful scheduling
+      setDate("");
+      setTime("");
+      setSelectedService("");
+      setSelectedDoctor("");
+      setPatientName("");
+      setAvailableTimes([]);
+      setAvailableDates([]);
+      setServices([]);
+      setSelectedDoctorId("");
     } catch (error) {
       console.error("Error during appointment scheduling:", error);
-      setConfirmationMessage(
-        "Failed to schedule appointment. Please check your details and try again."
-      );
+      setConfirmationMessage("Failed to schedule appointment. Please check your details and try again.");
     }
   };
 
   const handleCancel = () => {
+    // Clear all fields when canceling
     setDate("");
     setTime("");
     setSelectedService("");
     setSelectedDoctor("");
     setPatientName("");
-    setAvailableSlots([]);
+    setAvailableTimes([]);
+    setAvailableDates([]);
+    setServices([]);
     setConfirmationMessage("");
-    navigate("/")
+    navigate("/");
   };
 
   if (loading) {
@@ -145,29 +165,61 @@ const AppointmentForm = () => {
     <div className="appointment">
       <form className="appointment__form">
         <div className="appointment__form-group">
+          <label className="appointment__form-label">Doctor:</label>
+          <select
+            className="appointment__selection"
+            value={selectedDoctor}
+            onChange={handleDoctorChange}
+          >
+            <option value="" disabled>Select a doctor</option>
+            {doctors.map((doctor) => (
+              <option key={doctor.doctor_id} value={doctor.name}>
+                {doctor.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="appointment__form-group">
           <label className="appointment__form-label">Date:</label>
-          <input
-            className="appointment__input"
-            type="date"
+          <select
+            className="appointment__selection"
             value={date}
             onChange={handleDateChange}
-          />
+            disabled={!selectedDoctor}
+          >
+            <option value="" disabled>Select a date</option>
+            {availableDates.length > 0 ? (
+              availableDates.map((availability) =>
+                availability.dates.map((dateOption) => (
+                  <option key={dateOption} value={dateOption}>
+                    {dateOption}
+                  </option>
+                ))
+              )
+            ) : (
+              <option value="" disabled>No available dates</option>
+            )}
+          </select>
         </div>
+
         <div className="appointment__form-group">
           <label className="appointment__form-label">Time:</label>
           <select
             className="appointment__selection"
             value={time}
             onChange={(e) => setTime(e.target.value)}
+            disabled={!date}
           >
-            <option value="" disabled>
-              Select a time
-            </option>
-            {availableSlots.map((slot, index) => (
-              <option key={index} value={slot}>
-                {slot}
-              </option>
-            ))}
+            <option value="" disabled>Select a time</option>
+            {availableTimes.length > 0 ? (
+              availableTimes.map((timeOption) => (
+                <option key={timeOption} value={timeOption}>
+                  {timeOption}
+                </option>
+              ))
+            ) : (
+              <option value="" disabled>No available times</option>
+            )}
           </select>
         </div>
         <div className="appointment__form-group">
@@ -175,36 +227,17 @@ const AppointmentForm = () => {
           <select
             className="appointment__selection"
             value={selectedService}
-            onChange={(e) => setSelectedService(e.target.value)}
+            onChange={handleServiceChange}
+            disabled={!selectedDoctor}
           >
-            <option value="" disabled>
-              Select a service
-            </option>
-            {services.map((service, index) => (
-              <option key={index} value={service}>
+            <option value="" disabled>Select a service</option>
+            {services.map((service) => (
+              <option key={service} value={service}>
                 {service}
               </option>
             ))}
           </select>
         </div>
-        <div className="appointment__form-group">
-          <label className="appointment__form-label">Doctor:</label>
-          <select
-            className="appointment__selection"
-            value={selectedDoctor}
-            onChange={(e) => setSelectedDoctor(e.target.value)}
-          >
-            <option value="" disabled>
-              Select a doctor
-            </option>
-            {doctors.map((doctor) => (
-              <option key={doctor.id} value={doctor.name}>
-                {doctor.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
         <div className="appointment__form-group">
           <label className="appointment__form-label">Patient Name:</label>
           <input
@@ -213,6 +246,7 @@ const AppointmentForm = () => {
             value={patientName}
             onChange={(e) => setPatientName(e.target.value)}
             placeholder="Enter patient name"
+            required
           />
         </div>
         <div className="appointment__buttons">
@@ -227,9 +261,7 @@ const AppointmentForm = () => {
             className="appointment__btn-confirm"
             type="button"
             onClick={handleConfirm}
-            disabled={
-              !selectedService || !selectedDoctor || !time || !patientName
-            }
+            disabled={!selectedService || !selectedDoctor || !time || !patientName}
           >
             CONFIRM
           </button>
