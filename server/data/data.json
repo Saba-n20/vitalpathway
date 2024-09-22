@@ -131,6 +131,14 @@
             "Free_T3": "3.2"
           },
           "hemoglobin_a1c": "5.7"
+        },
+        {
+          "appointmentId": "6d6ee8de-0293-4bc7-bb88-5e914f6ebafc",
+          "appointmentdate": "2024-10-09",
+          "appointmenttime": "15:00",
+          "appointmentservice": "Skin Consultation",
+          "appointmentdoctor": "Alice Brown",
+          "patient": "John Doe"
         }
       ],
       "appointments": [

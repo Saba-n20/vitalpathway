@@ -177,91 +177,63 @@ const sampleMedicalReports = [
 const sampleheartRate= "76";
 const samplebloodPressure = "120"
 
-
 export const SignUp = (req, res) => {
+  console.log("Incoming signup data:", req.body);
   const {
-    firstName,
-    lastName,
-    dateOfBirth,
-    phoneNumber,
-    email,
-    address,
-    city,
-    postalCode,
-    password,
-    height,
-    weight,
-    gender,
-    maritalStatus 
+    firstName, lastName, dateOfBirth, phoneNumber, email,
+    address, city, postalCode, password, height, weight, gender, maritalStatus
   } = req.body;
 
   // Validate required fields
-  if (!firstName || !lastName || !dateOfBirth || !phoneNumber || !email || !address || !city || !postalCode || !password || !height || !weight || !gender || !maritalStatus) {
-    return res.status(400).json({ error: 'All fields are required' });
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  // Validate email format
-  const emailRegex = /\S+@\S+\.\S+/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: 'Invalid email format' });
-  }
-
-  // Validate postal code format
-  const postalCodeRegex = /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/;
-  if (!postalCodeRegex.test(postalCode)) {
-    return res.status(400).json({ error: 'Invalid postal code format' });
-  }
-
-  // Validate phone number format
-  const phoneRegex = /^\d{10}$/;
-  if (!phoneRegex.test(phoneNumber)) {
-    return res.status(400).json({ error: 'Invalid phone number format' });
-  }
-
-  // Read data from file
-  readDataFromFile((err, data) => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error("File read error:", err);
+      console.error("Error reading file:", err);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
 
-    const newPatient = {
-      patient_id: uuidv4(),
-      name: `${firstName} ${lastName}`,
-      dateOfBirth,
-      phoneNumber,
-      email,
-      address,
-      city,
-      postalCode,
-      password,
-      height,
-      weight,
-      heartRate:sampleheartRate,
-      bloodPressure: samplebloodPressure,
-      gender,
-      maritalStatus,
-      medical_reports: sampleMedicalReports 
-    };
+    try {
+      const jsonData = JSON.parse(data);
 
-    if (data.doctors.length > 0) {
-      data.doctors[0].patients.push(newPatient);
-      writeDataToFile(data, (writeErr) => {
+      const newPatient = {
+        patient_id: uuidv4(),
+        name: `${firstName} ${lastName}`,
+        dateOfBirth,
+        phoneNumber,
+        email,
+        address,
+        city,
+        postalCode,
+        password, 
+        height,
+        weight,
+        heartRate: sampleheartRate, 
+        bloodPressure: samplebloodPressure, 
+        gender,
+        maritalStatus,
+        medical_reports: sampleMedicalReports,
+        appointments: []
+      };
+
+      // Add the new patient to the patients array
+      jsonData.patients.push(newPatient);
+
+      fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), 'utf8', (writeErr) => {
         if (writeErr) {
-          console.error("File write error:", writeErr);
-          return res.status(500).json({ error: 'Error saving data' });
+          console.error("Error writing file:", writeErr);
+          return res.status(500).json({ error: 'Internal Server Error' });
         }
-        res.status(201).json({ message: 'User signed up successfully' });
+        return res.status(201).json({ message: 'User signed up successfully' });
       });
-    } else {
-      res.status(400).json({ error: 'No doctors available to assign the patient' });
+    } catch (parseErr) {
+      console.error("Error parsing JSON:", parseErr);
+      return res.status(500).json({ error: 'Internal Server Error' });
     }
   });
 };
-
-
-
-
 
 // Sign in user
 export const SignIn = (req, res) => {
@@ -291,9 +263,6 @@ export const SignIn = (req, res) => {
   });
 };
 
-
-
-
 // Sign Out user
 export const SignOut = (req, res) => {
   req.session.destroy(err => {
@@ -304,8 +273,6 @@ export const SignOut = (req, res) => {
     res.json({ success: true, message: 'Successfully signed out' });
   });
 };
-
-
 
 // Get doctors for a specific service
 export const getDoctorsForService = (req, res) => {
@@ -328,9 +295,5 @@ export const getDoctorsForService = (req, res) => {
     res.json(doctors);
   });
 };
-
-
-
-
 
 export { readDataFromFile, writeDataToFile };
