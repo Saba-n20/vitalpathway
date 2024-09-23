@@ -64,18 +64,18 @@
     }
 }
 
-.services{
+.servicespart{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         padding-left: 1rem;
         width: 100%;
-    &__icon{
-        width: 55px;
+    &__images{
+        width: 3.4375rem;
         mix-blend-mode: multiply;
     }
-    &__icon-appointment{
+    &__image-appointment{
         width: 4.0625rem;
         mix-blend-mode: multiply;
     }

@@ -49,31 +49,31 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="services">
-        <div className="services__details">
-          <img src={appointment} className="services__icon-appointment" alt="Appointment" />
+      <div className="servicespart">
+        <div className="servicespart__details">
+          <img src={appointment} className="servicespart__image-appointment" alt="Appointment" />
           <Link to="/schedule-appointment">
-            <p className="services__des-appointment">Schedule Appointment</p>
+            <p className="servicespart__des-appointment">Schedule Appointment</p>
           </Link>
         </div>
-        <div className="services__details">
-          <img src={report} className="services__icon" alt="Medical Reports" />
+        <div className="servicespart__details">
+          <img src={report} className="servicespart__images" alt="Medical Reports" />
           <Link to="/sign-in">
-            <p className="services__des-report">Medical Report</p>
+            <p className="servicespart__des-report">Medical Report</p>
           </Link>
         </div>
-        <div className="services__details">
-          <img src={communicate} className="services__icon" alt="Communicate with Dr" />
+        <div className="servicespart__details">
+          <img src={communicate} className="servicespart__images" alt="Communicate with Dr" />
           <Link to="/communicate">
-            <p className="services__des">Communicate with Dr</p>
+            <p className="servicespart__des">Communicate with Dr</p>
           </Link>
         </div>
-        <div className="services__satisfaction">
-          <div className="services__satisfaction-recovered">
-            <img src={recovered} className="services__icon" alt="Recovered Patients" />
+        <div className="servicespart__satisfaction">
+          <div className="servicespart__satisfaction-recovered">
+            <img src={recovered} className="servicespart__images" alt="Recovered Patients" />
           </div>
-          <div className="services__satisfaction-happy">
-            <img src={happy} className="services__icon" alt="Happy face" />
+          <div className="servicespart__satisfaction-happy">
+            <img src={happy} className="servicespart__images" alt="Happy face" />
           </div>
         </div>
       </div>
