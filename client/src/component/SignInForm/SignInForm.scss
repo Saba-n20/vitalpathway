@@ -19,21 +19,21 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        padding: 10px;
+        padding: 0.625rem;
     }
     &__label{
         width: 100%;
         color: $silver;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
     &__label-remember{
         width: 100%;
         color: $vitalpathway-black;
-        font-size: 15px;
+        font-size: 0.9375rem;
     }
     &__text{
         width: 21.875rem;
-        height: 40px;
+        height: 2.5rem;
         border-radius: 1.25rem;
         border: 0.0625rem solid $silver;
         padding-left: 0.625rem;
@@ -46,19 +46,19 @@
         }
     }
     &__box-remember{
-        margin: 8px;
+        margin: 0.5rem;
     }
 
     &__buttons{
         display: flex;
         flex-direction: row;
         width: 100%;
-        gap: 25px;
+        gap: 1.5625rem;
     }
 
     &__button-cancel {
         width: 50%;
-        height: 45px;
+        height: 2.8125rem;
         margin-top: 1rem;
         width: 100%;
         border: 0.0625rem solid $silver;
@@ -92,12 +92,9 @@
         background-color: $vitalpathway-darkblue;
         color: $white;
         font-size: 0.9375rem;
-        margin-top: 25px;
+        margin-top: 1.5625rem;
         &:hover {
           background-color: $vitalpathway-button;
         }
       }
-
-
-
 }

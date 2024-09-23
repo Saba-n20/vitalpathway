@@ -15,20 +15,20 @@
     justify-content: space-between;
   }
   &__image {
-    width: 150px;
+    width: 9.375rem;
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
-    padding: 0px;
+    margin-bottom: 0.9375rem;
+    padding: 0rem;
     color: $vitalpathway-darkblue; 
   }
   &__sub{
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     color: $vitalpathway-darkblue; 
   }
   
@@ -38,7 +38,7 @@
     align-items: center;
   }
   &__btn-sign-out {
-    height: 45px;
+    height: 2.8125rem;
     width: 10%;
     margin-top: 1rem;
     border: 0.0625rem solid $vitalpathway-darkblue;
@@ -53,8 +53,8 @@
 }
 
 .personalinfo {
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
 
   &__details {
     display: grid;
@@ -63,38 +63,37 @@
   }
 
   &__detail {
-    padding: 15px;
-    border: 2px solid #42a5f5; // Light blue border
-    border-radius: 5px;
+    padding: 0.9375rem;
+    border: 0.125rem solid #42a5f5; 
+    border-radius: 0.3125rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(30, 136, 229, 0.2); // Shadow for depth
-    animation: fadeIn 0.5s ease-in-out; // Animation on mount
+    box-shadow: 0 0.25rem 0.5rem rgba(30, 136, 229, 0.2); 
+    animation: fadeIn 0.5s ease-in-out; 
 
     &:hover {
-      box-shadow: 0 8px 16px rgba(30, 136, 229, 0.3); // Enhanced shadow on hover
-      transform: translateY(-2px); // Slight lift effect
+      box-shadow: 0 0.5rem 1rem rgba(30, 136, 229, 0.3); 
+      transform: translateY(-0.125rem); 
     }
 
     &__label {
       font-weight: 500;
-      color: #1976d2; // Medium blue for labels
+      color: #1976d2; 
     }
 
     &__value {
       font-weight: bold;
-      color: #0d47a1; // Dark blue for values
+      color: #0d47a1; 
     }
   }
 }
 
-// Keyframes for fade-in animation
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(0.625rem);
   }
   to {
     opacity: 1;
@@ -104,8 +103,8 @@
 
 
 .healthinfo {
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
 
   &__title-img{
     display: flex;
@@ -114,47 +113,47 @@
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
-    padding-left: 16px;
+    margin-bottom: 0.9375rem;
+    padding-left: 1rem;
     color: $vitalpathway-darkblue;  
   }
   &__image {
-    width: 100px;
-    margin-bottom: 20px;
+    width: 6.25rem;
+    margin-bottom: 1.25rem;
   }
 
   &__metrics {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 0.9375rem;
   }
 
   &__metric {
-    padding: 15px;
-    border: 2px solid #4caf50; // Medium green border
-    border-radius: 5px;
+    padding: 0.9375rem;
+    border: 0.125rem solid #4caf50; 
+    border-radius: 0.3125rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); // Shadow for depth
-    animation: fadeIn 0.5s ease-in-out; // Animation on mount
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 128, 0, 0.2); 
+    animation: fadeIn 0.5s ease-in-out; 
 
     &:hover {
-      box-shadow: 0 8px 16px rgba(0, 128, 0, 0.3); // Enhanced shadow on hover
-      transform: translateY(-2px); // Slight lift effect
+      box-shadow: 0 0.5rem 1rem rgba(0, 128, 0, 0.3); 
+      transform: translateY(-2px); 
     }
 
     &__label {
       font-weight: 500;
-      color: #388e3c; // Medium dark green for labels
+      color: #388e3c; 
     }
 
     &__value {
       font-weight: bold;
-      color: #1b5e20; // Darker green for values
+      color: #1b5e20; 
     }
   }
 }
@@ -163,7 +162,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(0.625rem);
   }
   to {
     opacity: 1;
@@ -172,18 +171,16 @@
 }
 
 
-
-
-$primary-color: #4a90e2; /* Primary color */
-$hover-color: #357ab8; /* Hover color */
-$even-row-color: #f5f7fa; /* Even row background color */
-$text-color: #333; /* Text color */
+$primary-color: #4a90e2; 
+$hover-color: #357ab8; 
+$even-row-color: #f5f7fa; 
+$text-color: #333; 
 
 
 
 .appointments {
   text-align: center;
-  margin: 40px 0;
+  margin: 2.5rem 0;
 
   &__title-img{
     display: flex;
@@ -193,15 +190,15 @@ $text-color: #333; /* Text color */
   }
 
   &__image {
-    width: 150px;
-    margin-bottom: 20px;
+    width: 9.375rem;
+    margin-bottom: 1.25rem;
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
-    padding: 0px;
+    margin-bottom: 0.9375rem;
+    padding: 0rem;
     color: $vitalpathway-darkblue; 
   }
 
@@ -209,24 +206,24 @@ $text-color: #333; /* Text color */
     display: flex;
     flex-direction: row;
     align-items:flex-start;
-    padding-left: 32px;
-    gap: 20px;
+    padding-left: 2rem;
+    gap: 1.25rem;
   }
 
   &__card {
     background: linear-gradient(135deg, #e8f0f2, #f9f9f9); 
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    height: 150px;
+    border-radius: 0.9375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    padding: 1.25rem;
+    height: 9.375rem;
     width: 100%;
-    width: 250px;
+    width: 15.625rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
 
     &:hover {
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-      transform: translateY(-4px);
+      box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25);
+      transform: translateY(-0.25rem);
     }
 
     &__information{
@@ -235,15 +232,15 @@ $text-color: #333; /* Text color */
       align-items: flex-start;
 
       strong {
-        color: #3498db; // Bright blue for labels
+        color: #3498db; 
         font-size: 1.1em;
-        margin-right: 5px;
+        margin-right: 0.3125rem;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.0313rem;
       }
 
       span {
-        color: #34495e; // Darker slate for text
+        color: #34495e; 
         font-size: 1em;
 
       }
@@ -251,7 +248,7 @@ $text-color: #333; /* Text color */
   }
 
   &__no-data {
-    color: #7f8c8d; // Muted gray for no data message
+    color: #7f8c8d; 
     font-size: 1.5em;
     margin-top: 15px;
     font-style: italic;
@@ -262,9 +259,9 @@ $text-color: #333; /* Text color */
 
 
 .medicalreports {
-  margin-top: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  margin-top: 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.25rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -277,37 +274,37 @@ $text-color: #333; /* Text color */
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     color: $vitalpathway-darkblue; 
-    padding-left: 16px;
-    padding-top: 10px;
+    padding-left: 1rem;
+    padding-top: 0.625rem;
     text-align: center;
   }
 
   &__image {
     display: block;
-    width: 100px;
+    width: 6.25rem;
   }
 
   &__report-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #3498db; // Blue border
+    margin-bottom: 1.25rem;
+    padding: 0.9375rem;
+    border: 0.0625rem solid #3498db;
     border-radius: 5px;
-    background-color: #ffffff; // White background
+    background-color: #ffffff;
   }
 
   &__report-title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: bold;
-    margin-bottom: 10px;
-    color: #2980b9; // Lighter blue for report titles
+    margin-bottom: 0.625rem;
+    color: #2980b9; 
   }
 
   &__details {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -316,41 +313,41 @@ $text-color: #333; /* Text color */
     width: 50%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__test-parttwo{
     width: 50%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   &__test {
-    margin-bottom: 15px; /* Space between tests */
+    margin-bottom: 0.9375rem; 
   }
   &__test-thyroid{
-    margin-bottom: 15px;
-    padding-top: 25px;
+    margin-bottom: 0.9375rem;
+    padding-top: 1.5625rem;
   }
 
   &__test-title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
-    color: #e74c3c; // Red for test titles
+    color: #e74c3c;
   }
 
   &__test-value {
-    font-size: 14px;
-    color: #34495e; // Dark gray for test values
-    margin-left: 10px; /* Indent values for clarity */
-    padding: 5px;
+    font-size: 0.875rem;
+    color: #34495e; 
+    margin-left: 0.625rem;
+    padding: 0.3125rem;
   }
 
   &__no-data {
     text-align: center;
     font-style: italic;
-    color: #7f8c8d; // Gray for no data message
-    padding: 20px 0;
+    color: #7f8c8d; 
+    padding: 1.25rem 0;
   }
 }
 

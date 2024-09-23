@@ -1,26 +1,26 @@
 import React from 'react';
-import './Modals.scss';
+import './Modal.scss';
 
 const Modal = ({ isOpen, message, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal__overlay">
       <div className="modal">
-        <div className="modal-header">
+        <div className="modal__header">
           <h2>Notification</h2>
-          <button className="close-button" onClick={onClose}>
+          <button className="modal__close-button" onClick={onClose}>
             &times;
           </button>
         </div>
-        <div className="modal-body">
+        <div className="modal__body">
           <p>{message}</p>
         </div>
-        <div className="modal-footer">
-          <button className="confirm-button" onClick={onConfirm}>
+        <div className="modal__footer">
+          <button className="modal__confirm-button" onClick={onConfirm}>
             Confirm
           </button>
-          <button className="cancel-button" onClick={onClose}>
+          <button className="modal__cancel-button" onClick={onClose}>
             Cancel
           </button>
         </div>

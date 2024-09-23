@@ -22,42 +22,49 @@ const SignUpForm = () => {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
-    setErrors({
-      ...errors,
+    }));
+    setErrors((prev) => ({
+      ...prev,
       [name]: "",
-    });
+    }));
+    setServerError(""); // Clear any previous server errors
   };
 
   const validate = () => {
     const newErrors = {};
-    for (const [key, value] of Object.entries(formData)) {
+    Object.entries(formData).forEach(([key, value]) => {
       if (!value.trim()) {
         newErrors[key] = `${key.replace(/([A-Z])/g, " $1").toUpperCase()} is required`;
       }
-    }
+    });
 
+    // Additional validations
     if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-
     if (formData.phoneNumber && !/^\d{10}$/.test(formData.phoneNumber)) {
       newErrors.phoneNumber = "Phone number must be 10 digits";
     }
-
     if (formData.postalCode && !/[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d/.test(formData.postalCode)) {
       newErrors.postalCode = "Invalid postal code format";
     }
-
     if (formData.password && formData.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters long";
+    }
+    // Check if height and weight are numbers
+    if (formData.height && isNaN(formData.height)) {
+      newErrors.height = "Height must be a number";
+    }
+    if (formData.weight && isNaN(formData.weight)) {
+      newErrors.weight = "Weight must be a number";
     }
 
     setErrors(newErrors);
@@ -66,21 +73,19 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
 
-    setIsLoading(true); // Start loading
-    console.log("Form Data Submitted:", formData); // Log the form data
+    setIsLoading(true);
+    console.log("Form Data Submitted:", formData);
 
     try {
-      const response = await axios.post("http://localhost:8080/signup", formData);
+      await axios.post("http://localhost:8080/signup", formData);
       navigate("/sign-in");
     } catch (error) {
       console.error("There was an error!", error.response?.data || error.message);
-      alert("Error signing up");
+      setServerError("Error signing up. Please try again."); 
     } finally {
-      setIsLoading(false); // End loading
+      setIsLoading(false);
     }
   };
 
@@ -91,6 +96,8 @@ const SignUpForm = () => {
   return (
     <div className="form">
       <form onSubmit={handleSubmit} className="form__container">
+        {serverError && <div className="error">{serverError}</div>} 
+        
         <div className="form__part-one">
           <div className="form__name">
             <div className="form__label-txt">
@@ -150,6 +157,7 @@ const SignUpForm = () => {
             </div>
           </div>
         </div>
+
         <div className="form__address">
           <div className="form__label-txt-address">
             <label className="form__label">Address:</label>
@@ -165,6 +173,7 @@ const SignUpForm = () => {
             {errors.address && <span className="error">{errors.address}</span>}
           </div>
         </div>
+
         <div className="form__part-two">
           <div className="form__phone-city">
             <div className="form__label-txt">
@@ -196,6 +205,7 @@ const SignUpForm = () => {
               {errors.city && <span className="error">{errors.city}</span>}
             </div>
           </div>
+
           <div className="form__post-pass">
             <div className="form__label-txt">
               <label className="form__label">Postal Code:</label>
@@ -259,6 +269,7 @@ const SignUpForm = () => {
               {errors.weight && <span className="error">{errors.weight}</span>}
             </div>
           </div>
+
           <div className="form__gen-marital">
             <div className="form__label-txt">
               <label className="form__label">Gender:</label>
@@ -300,6 +311,7 @@ const SignUpForm = () => {
             </div>
           </div>
         </div>
+
         <div className="form__btn">
           <button type="submit" className="form__btn-signup" disabled={isLoading}>
             {isLoading ? "Creating Account..." : "Create An Account"}
@@ -308,6 +320,7 @@ const SignUpForm = () => {
             type="button"
             className="form__btn-cancel"
             onClick={handleCancel}
+            disabled={isLoading} 
           >
             CANCEL
           </button>

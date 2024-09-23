@@ -57,7 +57,6 @@ const SignInForm = () => {
               const patientData = await patientResponse.json();
               // Store all patient data in localStorage
               localStorage.setItem("patientData", JSON.stringify(patientData));
-              // Redirect to medical reports page
               navigate(`/dashboard/${patientId}`);
             } else {
               setErrors((prevErrors) => ({

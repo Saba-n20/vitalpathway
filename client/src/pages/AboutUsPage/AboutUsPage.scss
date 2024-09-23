@@ -19,7 +19,7 @@
     &__why-info-img{
         display: flex;
         flex-direction: row;
-        margin-top: 150px;
+        margin-top: 9.375rem;
     }
     &__info-why{
         display: flex;
@@ -27,21 +27,21 @@
         align-items: flex-start;
     }
     &__title{
-        padding-bottom: 16px;
-        font-size: 25px;
+        padding-bottom: 1rem;
+        font-size: 1.5625rem;
     }
     &__txt{
-        padding-left: 16px;
-        font-size: 15px;
+        padding-left: 1rem;
+        font-size: 0.9375rem;
     }
     &__image{
         display: flex;
         flex-direction: row;
-        margin: 10px;
-        padding-top: 33px;
+        margin: 0.625rem;
+        padding-top: 2.0625rem;
     }
     &__img{
-        width: 400px;
+        width: 25rem;
         height: auto;
     }
 
@@ -54,8 +54,8 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 16px;
-        padding-top: 19px;
+        padding: 1rem;
+        padding-top: 1.1875rem;
 
     }
 }
@@ -67,14 +67,14 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        gap: 25px;
+        gap: 1.5625rem;
     }
     &__icon{
         width: 3.4375rem;
         mix-blend-mode: multiply;   
     }
     &__des{
-        margin-left: 10px;
+        margin-left: 0.625rem;
     }
     &__details{
         display: flex;

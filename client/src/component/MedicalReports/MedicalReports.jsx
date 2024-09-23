@@ -3,7 +3,7 @@ import medicalReport from "../../assets/images/medical-report.jpg";
 import generalHealth from "../../assets/images/general-health.jpg";
 import appointment from "../../assets/images/appointment.jpg";
 import report from "../../assets/images/report.png";
-import Modal from "../Modals/Modals.jsx";
+import Modal from "../Modals/Modal/Modal.jsx";
 import "./MedicalReports.scss";
 
 const MedicalReports = ({ patient }) => {
@@ -191,7 +191,7 @@ const MedicalReports = ({ patient }) => {
                 report.appointmentdoctor && (
                   <div
                     className="appointments__card"
-                    key={index} // Make sure to use a unique key if available
+                    key={index} 
                   >
                     <div className="appointments__card-content">
                       <h4 className="appointments__card-title">
@@ -227,10 +227,10 @@ const MedicalReports = ({ patient }) => {
       {medical_reports && medical_reports.length > 0 ? (
         medical_reports.map(
           (report, index) =>
-            report.date && ( // Ensure there is a date before rendering
+            report.date && ( 
               <div
                 className="medicalreports__report-section"
-                key={report.id || `report-${index}`} // Ensure a unique key
+                key={report.id || `report-${index}`} 
               >
                 <h4 className="medicalreports__report-title">
                   Report from {report.date}

@@ -1,13 +1,13 @@
 @use "../../Styles/partials/global" as *;
-@use '../../Styles/partials/variables' as *;
-@use '../../Styles/partials/mixins' as *;
+@use "../../Styles/partials/variables" as *;
+@use "../../Styles/partials/mixins" as *;
 
-.signup{
+.doctors{
     background-color: white;
     display: flex;
     flex-direction: column;
-    &__container{
-        padding: 100px;
+    &__title-info{
+        padding: 6.25rem;
         background-image: url("../../assets/images/background.png");
         width: 100%;
         background-size: cover;
@@ -28,26 +28,24 @@
             background: rgba(255, 255, 255, 1);
         }
     }
-    &__des{
+    &__title{
+        font-size: 2.1875rem;
+        padding-bottom: 1rem;
+    }
+
+    &__info{
         width: 50%;
         padding-top: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         font-weight: 600;
-        text-align:justify;
+        text-align: justify;
     }
-    &__instruction{
+    &__container{
         display: flex;
         flex-direction: row;
-        align-items: center;
-        margin-left: 1rem;
-        width: 100%;
+        background-color: $white;
     }
-    &__instruction-list{
-        margin: 1rem 1rem 1.5625rem 1rem;
-    }
-    &__instruction-items{
-        margin: 1rem 1rem 1.5625rem 1rem;
-    }
+ 
 }

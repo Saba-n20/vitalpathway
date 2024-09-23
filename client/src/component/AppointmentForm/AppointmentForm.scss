@@ -5,7 +5,7 @@
 .appointment{
     display: flex;
     flex-direction: row;
-    margin: 16px;
+    margin: 1rem;
 
     &__form{
     background-color: white;
@@ -21,12 +21,12 @@
     &__form-label{
         width: 100%;
         color: $silver;
-        font-size: 15px;
-        padding: 5px;
+        font-size: 0.9375rem;
+        padding: 0.3125rem;
     }
     &__input{
         width: 21.875rem;
-        height: 40px;
+        height: 2.5rem;
         border-radius: 1.25rem;
         border: 0.0625rem solid $silver;
         padding-left: 0.625rem;
@@ -62,7 +62,7 @@
 
     &__btn-cancel {
         width: 50%;
-        height: 45px;
+        height: 2.8125rem;
         margin-top: 1rem;
         width: 100%;
         border: 0.0625rem solid $silver;
@@ -88,8 +88,36 @@
           background-color: $vitalpathway-button;
         }
       }
-      &__msg{
-        padding: 36px;
-        flex-wrap: wrap;
+      .appointment__message {
+        margin-top: 1.25rem;
+        padding: 0.5rem 0.75rem; 
+        border-radius: 0.25rem; 
+        color: #d9534f; 
+        border: 0.125rem solid #d9534f;
+        font-weight: bold;
+        font-size: 0.875rem; 
+        text-align: center; 
+        display: inline-block; 
+        animation: fadeIn 0.3s ease-in-out; 
+        transition: transform 0.2s; 
       }
+      
+      .appointment__message:hover {
+        transform: translateY(-0.125rem); // Slight lift on hover
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-0.625rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      
+      
+      
 }

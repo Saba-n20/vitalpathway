@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ModalError from '../../component/Modals/ModalError/ModalError.jsx';
+import SuccessModal from '../../component/Modals/SuccessModal/SuccessModal.jsx'; 
 import "./AppointmentForm.scss";
 
 const fetchDoctors = async () => {
@@ -15,6 +17,19 @@ const fetchDoctors = async () => {
   }
 };
 
+const fetchDoctorById = async (doctorId) => {
+  try {
+    const response = await fetch(`http://localhost:8080/doctors/${doctorId}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch doctor by ID");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching doctor by ID:", error);
+    return null;
+  }
+};
+
 const AppointmentForm = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -27,7 +42,9 @@ const AppointmentForm = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmationMessage, setConfirmationMessage] = useState("");
-  const [selectedDoctorId, setSelectedDoctorId] = useState(""); // Keep as is for local state
+  const [selectedDoctorId, setSelectedDoctorId] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,30 +63,29 @@ const AppointmentForm = () => {
     loadDoctors();
   }, []);
 
-  const handleDoctorChange = (event) => {
+  const handleDoctorChange = async (event) => {
     const doctorName = event.target.value;
     setSelectedDoctor(doctorName);
     
-    // Find the doctor based on the selected name
     const selectedDoc = doctors.find((doctor) => doctor.name === doctorName);
     
-    // Log the selected doctor object for debugging
-    console.log("Selected Doctor Object:", selectedDoc);
-    
     if (selectedDoc) {
-      setSelectedDoctorId(selectedDoc.id); // Change to 'id'
-      console.log("Selected Doctor ID:", selectedDoc.id); // Log the ID
-      setServices(selectedDoc.services || []);
-      setAvailableDates(selectedDoc.availability || []);
-      setDate(""); // Reset date and time selections
-      setTime("");
-      setAvailableTimes([]);
-    } else {
-      console.log("No doctor found with the name:", doctorName);
+      setSelectedDoctorId(selectedDoc.id);
+      const doctorDetails = await fetchDoctorById(selectedDoc.id);
+
+      if (doctorDetails) {
+        setServices(doctorDetails.services || []);
+        setAvailableDates(doctorDetails.availability || []);
+      }
+      resetAppointmentDetails();
     }
   };
-  
-  
+
+  const resetAppointmentDetails = () => {
+    setDate("");
+    setTime("");
+    setAvailableTimes([]);
+  };
 
   const handleDateChange = (event) => {
     const selectedDate = event.target.value;
@@ -82,7 +98,7 @@ const AppointmentForm = () => {
       );
 
       if (availabilityForDate) {
-        setAvailableTimes(availabilityForDate.time);
+        setAvailableTimes(availabilityForDate.time || []);
       } else {
         setAvailableTimes([]);
       }
@@ -98,20 +114,19 @@ const AppointmentForm = () => {
       date,
       time,
       service: selectedService,
-      doctor_id: selectedDoctorId, // Change to doctor_id
+      id: selectedDoctorId,
       patientName,
     };
 
-    console.log("Payload being sent:", appointmentData); // Log the data
-    
-    // Check if any field is empty
+    console.log("Appointment Data:", appointmentData);
+
+    // Check for empty fields
     if (!date || !time || !selectedService || !selectedDoctorId || !patientName) {
-      console.log("One or more fields are empty.");
-      console.log(`Date: ${date}, Time: ${time}, Service: ${selectedService}, DoctorId: ${selectedDoctorId}, Patient Name: ${patientName}`);
       setConfirmationMessage("All fields are required.");
+      setShowErrorModal(true);
       return;
     }
-  
+
     try {
       const response = await fetch("http://localhost:8080/schedule", {
         method: "POST",
@@ -120,40 +135,46 @@ const AppointmentForm = () => {
         },
         body: JSON.stringify(appointmentData),
       });
-  
+
+      const responseData = await response.json(); 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to schedule appointment: ${errorText}`);
+        throw new Error(`Failed to schedule appointment: ${JSON.stringify(responseData)}`);
       }
-  
+
+      // Show success modal if successful
       setConfirmationMessage("Appointment scheduled successfully!");
-      // Clear form after successful scheduling
-      setDate("");
-      setTime("");
-      setSelectedService("");
-      setSelectedDoctor("");
-      setPatientName("");
-      setAvailableTimes([]);
-      setAvailableDates([]);
-      setServices([]);
-      setSelectedDoctorId("");
+      setShowSuccessModal(true);
     } catch (error) {
       console.error("Error during appointment scheduling:", error);
       setConfirmationMessage("Failed to schedule appointment. Please check your details and try again.");
+      setShowErrorModal(true);
     }
   };
 
-  const handleCancel = () => {
-    // Clear all fields when canceling
+  const resetForm = () => {
     setDate("");
     setTime("");
     setSelectedService("");
-    setSelectedDoctor("");
     setPatientName("");
     setAvailableTimes([]);
     setAvailableDates([]);
     setServices([]);
-    setConfirmationMessage("");
+    setSelectedDoctor("");
+    setSelectedDoctorId("");
+  };
+
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    resetForm();
+    navigate("/sign-in"); // Navigate to the sign-in page after closing the modal
+  };
+
+  const handleCancel = () => {
+    resetForm();
     navigate("/");
   };
 
@@ -173,7 +194,7 @@ const AppointmentForm = () => {
           >
             <option value="" disabled>Select a doctor</option>
             {doctors.map((doctor) => (
-              <option key={doctor.doctor_id} value={doctor.name}>
+              <option key={doctor.id} value={doctor.name}>
                 {doctor.name}
               </option>
             ))}
@@ -189,9 +210,9 @@ const AppointmentForm = () => {
           >
             <option value="" disabled>Select a date</option>
             {availableDates.length > 0 ? (
-              availableDates.map((availability) =>
+              availableDates.flatMap((availability) =>
                 availability.dates.map((dateOption) => (
-                  <option key={dateOption} value={dateOption}>
+                  <option key={`${availability.day}-${dateOption}`} value={dateOption}>
                     {dateOption}
                   </option>
                 ))
@@ -231,8 +252,8 @@ const AppointmentForm = () => {
             disabled={!selectedDoctor}
           >
             <option value="" disabled>Select a service</option>
-            {services.map((service) => (
-              <option key={service} value={service}>
+            {services.map((service, index) => (
+              <option key={`${service}-${index}`} value={service}>
                 {service}
               </option>
             ))}
@@ -267,9 +288,18 @@ const AppointmentForm = () => {
           </button>
         </div>
       </form>
-      {confirmationMessage && (
-        <div className="appointment__message">{confirmationMessage}</div>
-      )}
+
+      <ModalError 
+        isOpen={showErrorModal} 
+        message={confirmationMessage} 
+        onClose={handleCloseErrorModal} 
+      />
+      
+      <SuccessModal 
+        isOpen={showSuccessModal} 
+        message="Your appointment has been booked successfully!" 
+        onClose={handleCloseSuccessModal} 
+      />
     </div>
   );
 };
