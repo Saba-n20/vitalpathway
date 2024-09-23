@@ -93,7 +93,7 @@ No external APIs will be used for the initial implementation.
 ![alt text](<Make Appointment.png>)
 
 - **View Medical Records**
-![alt text](Medical-reports-1.png)
+![alt text](Medical-reports.png)
 
 - **Sign Up**
 ![alt text](<Sign Up.png>)
