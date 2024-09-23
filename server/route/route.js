@@ -39,6 +39,8 @@ router.get('/patients', controller.getAllPatients);
 // Route to get all doctors
 router.get('/doctors', appointment.getAllDoctors);
 
+router.get('/doctors/:doctorId', appointment.getDoctorById);
+
 // Route to get patient by ID
 router.get('/patients/:id', controller.getPatientById);
 

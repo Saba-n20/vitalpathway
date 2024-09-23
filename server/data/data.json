@@ -139,6 +139,14 @@
           "appointmentservice": "Skin Consultation",
           "appointmentdoctor": "Alice Brown",
           "patient": "John Doe"
+        },
+        {
+          "appointmentId": "83dc6b13-801a-491c-8b64-387e61570ac7",
+          "appointmentdate": "2024-10-14",
+          "appointmenttime": "10:00",
+          "appointmentservice": "General Checkup",
+          "appointmentdoctor": "Emily Johnson",
+          "patient": "John Doe"
         }
       ],
       "appointments": [
@@ -304,19 +312,19 @@
           "hemoglobin_a1c": "5.6"
         },
         {
-          "appointmentId": "03b2354b-a636-4589-a85e-a62bfcbd0ad5",
-          "appointmentdate": "2024-10-07",
-          "appointmenttime": "09:00",
+          "appointmentId": "b0fd2062-baf6-4ba9-aa41-273322474ace",
+          "appointmentdate": "2024-10-28",
+          "appointmenttime": "10:00",
           "appointmentservice": "General Checkup",
           "appointmentdoctor": "Emily Johnson",
           "patient": "Saba Namdari"
         },
         {
-          "appointmentId": "155305b0-677d-4392-b727-7ff77f008f52",
-          "appointmentdate": "2024-10-08",
-          "appointmenttime": "14:00",
-          "appointmentservice": "Stress Test",
-          "appointmentdoctor": "Robert Smith",
+          "appointmentId": "84ba0cda-d6c8-4fa2-b54f-6177f5857614",
+          "appointmentdate": "2024-10-31",
+          "appointmenttime": "12:00",
+          "appointmentservice": "Teeth Whitening",
+          "appointmentdoctor": "Mark Wilson",
           "patient": "Saba Namdari"
         }
       ]
@@ -324,8 +332,10 @@
   ],
   "doctors": [
     {
-      "doctor_id": "3e07d0bb-b6a5-49aa-b9b4-2e317ab9f799",
+      "id": "3e07d0bb-b6a5-49aa-b9b4-2e317ab9f799",
       "name": "Emily Johnson",
+      "phoneNumber": "4379856556",
+      "email": "emily.johnson@vitalpathway.com",
       "specialty": "General Practitioner",
       "services": [
         "General Checkup",
@@ -382,8 +392,10 @@
       ]
     },
     {
-      "doctor_id": "a7e6c10c-f56a-4e45-b473-167a98e5f812",
+      "id": "a7e6c10c-f56a-4e45-b473-167a98e5f812",
       "name": "Robert Smith",
+      "phoneNumber": "4379857557",
+      "email": "robert.smith@vitalpathway.com",
       "specialty": "Cardiologist",
       "services": [
         "Cardiac Checkup",
@@ -426,8 +438,10 @@
       ]
     },
     {
-      "doctor_id": "e5f39f8e-e248-4d9f-b52f-9c9bb9fbe0f4",
+      "id": "e5f39f8e-e248-4d9f-b52f-9c9bb9fbe0f4",
       "name": "Alice Brown",
+      "phoneNumber": "4379858558",
+      "email": "alice.brown@vitalpathway.com",
       "specialty": "Dermatologist",
       "services": [
         "Skin Consultation",
@@ -469,8 +483,10 @@
       ]
     },
     {
-      "doctor_id": "c4faea7d-8a34-4c2e-b8a0-2cd6d0f4c9bc",
+      "id": "c4faea7d-8a34-4c2e-b8a0-2cd6d0f4c9bc",
       "name": "Mark Wilson",
+      "phoneNumber": "4379851221",
+      "email": "mark.wilson@vitalpathway.com",
       "specialty": "Dentist",
       "services": [
         "Dental Cleaning",

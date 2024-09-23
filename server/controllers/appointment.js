@@ -46,7 +46,7 @@ const findAvailableSlots = (doctor, patients, date) => {
   return allPossibleTimes.filter(time => !takenTimes.has(time));
 };
 
-// New Endpoint to get available dates and times for a specific doctor
+// Endpoint to get available dates and times for a specific doctor
 export const getAvailableDatesAndTimes = async (req, res) => {
   const { doctorId } = req.query;
   if (!doctorId) {
@@ -101,48 +101,64 @@ export const getAllServices = async (req, res) => {
 export const getAllDoctors = async (req, res) => {
   try {
     const data = await readDataFromFile();
-    const doctors = data.doctors.map(doctor => ({
-      id: doctor.doctor_id,
-      name: doctor.name,
-      specialty: doctor.specialty,
-      phoneNumber: doctor.phoneNumber,
-      email: doctor.email,
-      address: doctor.address,
-      services: doctor.services,
-      availability: doctor.availability
-    }));
 
-    res.json(doctors);
+    // Check if the doctors array exists and is an array
+    if (!data.doctors || !Array.isArray(data.doctors)) {
+      return res.status(404).json({ message: 'No doctors found' });
+    }
+
+    // Return the doctors data, including their IDs
+    return res.status(200).json(data.doctors);
   } catch (error) {
-    console.error('Error getting doctors:', error);
-    res.status(500).send('Internal Server Error');
+    console.error("Error fetching doctors:", error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get doctor by ID
+export const getDoctorById = async (req, res) => {
+  const { doctorId } = req.params; 
+  if (!doctorId) {
+      return res.status(400).json({ error: 'Doctor ID is required' });
+  }
+
+  try {
+      const data = await readDataFromFile(); 
+      const doctor = data.doctors.find(doc => doc.id === doctorId); 
+      if (!doctor) {
+          return res.status(404).json({ error: 'Doctor not found' });
+      }
+      res.status(200).json(doctor);
+  } catch (error) {
+      console.error('Error fetching doctor:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 };
 
 
-
-// Endpoint to schedule an appointment
 export const scheduleAppointment = async (req, res) => {
-  const { date, time, service, doctor_id, patientName } = req.body; 
+  console.log(req.body); 
+
+  const { date, time, service, id, patientName } = req.body;
 
   // Check for all required fields
-  if (!date || !time || !service || !doctor_id || !patientName) { 
-    return res.status(400).send('All fields are required');
+  if (!date || !time || !service || !id || !patientName) {
+    return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     const data = await readDataFromFile();
-    
-    // Check if the doctor exists
-    const doctor = data.doctors.find(doc => doc.doctor_id === doctor_id); 
+
+    // Check if the doctor exists using the id
+    const doctor = data.doctors.find(doc => doc.id === id);
     if (!doctor) {
-      return res.status(404).send(`Doctor not found: ${doctor_id}`); 
+      return res.status(404).json({ error: `Doctor not found: ${id}` });
     }
 
     // Check if the patient exists
     const patientData = data.patients.find(p => p.name === patientName);
     if (!patientData) {
-      return res.status(404).send('Patient not found');
+      return res.status(404).json({ error: 'Patient not found' });
     }
 
     // Check for existing appointments
@@ -151,12 +167,12 @@ export const scheduleAppointment = async (req, res) => {
     );
 
     if (existingAppointment) {
-      return res.status(409).send('This patient already has an appointment at this time.');
+      return res.status(409).json({ error: 'This patient already has an appointment at this time.' });
     }
 
     // Create new appointment object
     const newAppointment = {
-      appointmentId: uuidv4(), 
+      appointmentId: uuidv4(),
       appointmentdate: date,
       appointmenttime: time,
       appointmentservice: service,
@@ -166,7 +182,7 @@ export const scheduleAppointment = async (req, res) => {
 
     // Add the new appointment to the patient's records
     patientData.medical_reports.push(newAppointment);
-    
+
     // Write updated data back to the file
     await writeDataToFile(data);
     
@@ -174,8 +190,7 @@ export const scheduleAppointment = async (req, res) => {
     res.status(201).json({ message: 'Appointment scheduled successfully', appointment: newAppointment });
   } catch (error) {
     console.error('Error scheduling appointment:', error);
-    res.status(500).send('Internal server error');
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
