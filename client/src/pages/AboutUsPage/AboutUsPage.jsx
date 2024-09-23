@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../../component/Header/Header";
 import Footer from "../../component/Footer/Footer";
-import recovered from "../../assets/icons/recovered.svg";
-import happy from "../../assets/icons/happy-face.svg";
+import recovered from "../../assets/images/recovered.jpeg";
+import happy from "../../assets/images/happyface.jpeg";
 import aboutus from "../../assets/images/about-us.png";
 import why from "../../assets/images/WHY.jpg";
 import "../AboutUsPage/AboutUsPage.scss";

@@ -12,7 +12,7 @@
     box-sizing: border-box; 
 
     &__logo-des{
-        background-color: $vitalpathway-button;
+        background-color: rgba($vitalpathway-button, 0.85);
         width: 40%;
         display: flex;
         flex-direction: row-reverse;
@@ -30,13 +30,12 @@
         padding-left: 1rem;
     }
     &__information{
-        background-color: $vitalpathway-button;
+        background-color: rgba($vitalpathway-button, 0.85);
         width: 40%;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
-        padding-left: 1.5rem; 
-        padding-top: 1.5rem; 
+        justify-content: flex-start;
+        padding-top: 1rem;
         margin-top: 1rem;
         border: 0.0625rem solid $white;
         border-radius: 0.625rem;
@@ -44,14 +43,22 @@
     &__details{
         display: flex;
         flex-direction: column;
+        
+    }
+    &__information-title{
+        padding-left: 16px;
+        padding-top: 16px;
     }
     &__list{
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-left: 16px;
+        padding-top: 16px;
+        
     }
     &__contact-media{
-        background-color: $vitalpathway-button;
+        background-color: rgba($vitalpathway-button, 0.85);
         width: 40%;
         display: flex;
         flex-direction: row;
@@ -87,6 +94,13 @@
         display: flex;
         flex-direction: row;
         padding-top: 10px;
+    }
+    &__information-img{
+        width: 25%;
+        height: 55px;
+        flex-shrink: unset;
+        mix-blend-mode: multiply;
+        
     }
     &__media{
         padding-top: 23px;

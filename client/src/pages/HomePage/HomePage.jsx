@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../../component/Header/Header";
 import doctors from "../../assets/images/result.png";
-import appointment from "../../assets/icons/appointment.svg";
-import report from "../../assets/icons/report.svg";
-import communicate from "../../assets/icons/communicate.svg";
-import recovered from "../../assets/icons/recovered.svg";
-import happy from "../../assets/icons/happy-face.svg";
+import appointment from "../../assets/images/appointment.jpg";
+import report from "../../assets/images/report.png";
+import communicate from "../../assets/images/communicate.jpeg";
+import recovered from "../../assets/images/recovered.jpeg";
+import happy from "../../assets/images/happyface.jpeg";
 import "../HomePage/HomePage.scss";
 import Footer from "../../component/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
@@ -51,14 +51,14 @@ const HomePage = () => {
       </div>
       <div className="services">
         <div className="services__details">
-          <img src={appointment} className="services__icon" alt="Appointment" />
+          <img src={appointment} className="services__icon-appointment" alt="Appointment" />
           <Link to="/schedule-appointment">
-            <p className="services__des">Schedule Appointment</p>
+            <p className="services__des-appointment">Schedule Appointment</p>
           </Link>
         </div>
         <div className="services__details">
           <img src={report} className="services__icon" alt="Medical Reports" />
-          <Link to="/medical-report">
+          <Link to="/sign-in">
             <p className="services__des-report">Medical Report</p>
           </Link>
         </div>

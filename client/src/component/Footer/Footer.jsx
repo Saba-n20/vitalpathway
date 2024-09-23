@@ -6,6 +6,7 @@ import email from "../../assets/icons/email.svg";
 import facebook from "../../assets/icons/Icon-facebook.svg";
 import instagram from "../../assets/icons/Icon-instagram.svg";
 import twitter from "../../assets/icons/Icon-twitter.svg";
+import information from "../../assets/images/information.jpeg"
 import "./Footer.scss";
 import logo from "../../assets/logo/logo.svg";
 
@@ -22,6 +23,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className="footer__information">
+        <img src={information} alt="Information" className="footer__information-img" />
         <p className="footer__information-title">Information:</p>
         <div className="footer__details">
           <ul className="footer__list">

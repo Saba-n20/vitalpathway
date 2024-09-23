@@ -1,4 +1,3 @@
-// src/pages/DoctorsPage.jsx
 import React, { useEffect, useState } from "react";
 import Header from "../../component/Header/Header.jsx";
 import Footer from "../../component/Footer/Footer.jsx";

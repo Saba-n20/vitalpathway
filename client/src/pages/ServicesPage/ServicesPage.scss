@@ -2,7 +2,7 @@
 @use "../../Styles/partials/variables" as *;
 @use "../../Styles/partials/mixins" as *;
 
-.doctors{
+.services {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -54,10 +54,38 @@
         line-height: 1.6; 
         margin: 0 auto; 
     }
-    &__container{
+
+    &__list {
+        margin-top: 2rem; 
+        padding: 0;
+        list-style-position: inside; 
+        font-size: 1.125rem; 
+
+        li {
+            padding: 0.5rem 0; 
+            position: relative; 
+            padding-left: 1.5rem; 
+
+            &::before {
+                content: '➤'; 
+                position: absolute;
+                left: 0;
+                color: $vitalpathway-button; 
+                font-size: 1.2rem; 
+            }
+        }
+    }
+    &__list-image{
         display: flex;
         flex-direction: row;
-        background-color: $white;
+        align-items: center;
+        gap: 5.3125rem;
     }
- 
+
+    &__img {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 34.375rem;
+    }
 }
