@@ -336,6 +336,110 @@
           "patient": "Saba Namdari"
         }
       ]
+    },
+    {
+      "patient_id": "bbe09d81-f787-4050-890a-4e2fdbf2a665",
+      "name": "Setareh Namdari",
+      "dateOfBirth": "1987-12-25",
+      "phoneNumber": "9871235489",
+      "email": "setareh@gmail.com",
+      "address": "919 Moris lane",
+      "city": "New York",
+      "postalCode": "M4P 0T8",
+      "password": "987654321sn",
+      "height": "165",
+      "weight": "62",
+      "heartRate": "76",
+      "bloodPressure": "120",
+      "gender": "Female",
+      "maritalStatus": "Single",
+      "medical_reports": [
+        {
+          "date": "2024-07-15",
+          "complete_blood_count": {
+            "RBC": "4.8",
+            "Hb": "13.8",
+            "HCT": "42.0",
+            "WBC": "6.9"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "85",
+            "calcium": "9.0",
+            "sodium": "138",
+            "potassium": "4.0",
+            "bicarbonate": "22",
+            "chloride": "100",
+            "BUN": "13",
+            "creatinine": "0.9"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "6.8",
+            "albumin": "4.3",
+            "AST": "21",
+            "ALT": "29",
+            "alkaline_phosphatase": "64"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "180",
+            "LDL": "110",
+            "HDL": "65",
+            "triglycerides": "90"
+          },
+          "thyroid_function_tests": {
+            "TSH": "1.8",
+            "Free_T4": "1.1",
+            "Free_T3": "3.0"
+          },
+          "hemoglobin_a1c": "5.4"
+        },
+        {
+          "date": "2024-08-15",
+          "complete_blood_count": {
+            "RBC": "4.9",
+            "Hb": "13.9",
+            "HCT": "42.5",
+            "WBC": "7.0"
+          },
+          "basic_metabolic_panel": {
+            "glucose": "86",
+            "calcium": "9.1",
+            "sodium": "139",
+            "potassium": "4.1",
+            "bicarbonate": "23",
+            "chloride": "101",
+            "BUN": "14",
+            "creatinine": "1.0"
+          },
+          "comprehensive_metabolic_panel": {
+            "total_protein": "6.9",
+            "albumin": "4.4",
+            "AST": "22",
+            "ALT": "30",
+            "alkaline_phosphatase": "65"
+          },
+          "lipid_panel": {
+            "total_cholesterol": "185",
+            "LDL": "115",
+            "HDL": "66",
+            "triglycerides": "95"
+          },
+          "thyroid_function_tests": {
+            "TSH": "1.9",
+            "Free_T4": "1.2",
+            "Free_T3": "3.1"
+          },
+          "hemoglobin_a1c": "5.5"
+        },
+        {
+          "appointmentId": "05be9e16-9cce-4b32-807a-bf15494bd8c3",
+          "appointmentdate": "2024-10-15",
+          "appointmenttime": "15:00",
+          "appointmentservice": "Teeth Whitening",
+          "appointmentdoctor": "Mark Wilson",
+          "patient": "Setareh Namdari"
+        }
+      ],
+      "appointments": []
     }
   ],
   "doctors": [
