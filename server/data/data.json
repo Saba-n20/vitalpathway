@@ -14,7 +14,7 @@
       "bloodPressure": "125/85",
       "name": "John Doe",
       "height": "175 cm",
-      "weight": "70 kg",
+      "weight": "125 kg",
       "gender": "Male",
       "maritalStatus": "Married",
       "medical_reports": [
@@ -146,6 +146,14 @@
           "appointmenttime": "10:00",
           "appointmentservice": "General Checkup",
           "appointmentdoctor": "Emily Johnson",
+          "patient": "John Doe"
+        },
+        {
+          "appointmentId": "67aa1de2-ee44-42f0-8d43-28d7ee0e7a6c",
+          "appointmentdate": "2024-10-29",
+          "appointmenttime": "15:00",
+          "appointmentservice": "Cardiac Checkup",
+          "appointmentdoctor": "Robert Smith",
           "patient": "John Doe"
         }
       ],
@@ -445,6 +453,14 @@
           "appointmentservice": "Stress Test",
           "appointmentdoctor": "Robert Smith",
           "patient": "Setareh Namdari"
+        },
+        {
+          "appointmentId": "cf5e9d97-dbfe-4c95-afba-1f7d7838f267",
+          "appointmentdate": "2024-10-16",
+          "appointmenttime": "14:00",
+          "appointmentservice": "Skin Consultation",
+          "appointmentdoctor": "Alice Brown",
+          "patient": "Setareh Namdari"
         }
       ],
       "appointments": []
@@ -456,6 +472,7 @@
       "name": "Emily Johnson",
       "phoneNumber": "4379856556",
       "email": "emily.johnson@vitalpathway.com",
+      "image":"Emily.png",
       "specialty": "General Practitioner",
       "services": [
         "General Checkup",
@@ -516,6 +533,7 @@
       "name": "Robert Smith",
       "phoneNumber": "4379857557",
       "email": "robert.smith@vitalpathway.com",
+      "image":"Robert.png",
       "specialty": "Cardiologist",
       "services": [
         "Cardiac Checkup",
@@ -562,6 +580,7 @@
       "name": "Alice Brown",
       "phoneNumber": "4379858558",
       "email": "alice.brown@vitalpathway.com",
+      "image":"Alice.png",
       "specialty": "Dermatologist",
       "services": [
         "Skin Consultation",
@@ -607,6 +626,7 @@
       "name": "Mark Wilson",
       "phoneNumber": "4379851221",
       "email": "mark.wilson@vitalpathway.com",
+      "image":"Mark.png",
       "specialty": "Dentist",
       "services": [
         "Dental Cleaning",
