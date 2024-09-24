@@ -3,7 +3,7 @@ import './DoctorsCard.scss';
 
 const DoctorCard = ({ doctor }) => {
     // Set the image path
-    const imagePath = `http://localhost:8080/images/${doctor.image}`; // Update the path as needed
+    const imagePath = `http://localhost:8080/images/${doctor.image}`; 
 
     return (
         <div className="doctorcard">
