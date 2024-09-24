@@ -28,14 +28,14 @@
   }
 
   &__img {
-    width: 100%;
-    height: auto;
+    width: 90%;
+    height: 35%;
     border-radius: 0.9375rem 0.9375rem 0 0;
     margin-bottom: 0.9375rem;
     transition: transform 0.3s ease;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
   }
 
